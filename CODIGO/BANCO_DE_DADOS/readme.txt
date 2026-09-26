@@ -1,0 +1,1 @@
+Aqui constarão todas as pastas referentes ao desenvolvimento do banco de dados do projeto. 
