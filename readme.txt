@@ -8,7 +8,7 @@ A EQUIPE
 --> Kenzo
 
 A DEMANDA
-A Cantina ABBA, que atua internamente no IFSP, enfrenta diversos desafios estruturais: organização praticamente toda manual, registros realizados em papel, ausência de um cardápio dinâmico e, consequentemente, longas filas nos horários de pico.
+A Cantina interna do IFSP, campus Bragança Paulista, enfrenta diversos desafios estruturais: organização praticamente toda manual, registros realizados em papel, ausência de um cardápio dinâmico e, consequentemente, longas filas nos horários de pico.
 
 A SOLUÇÃO
 Desenvolver um cardápio digital integrado ao banco de dados de um sistema de gestão comercial interna, por meio do qual será possível visualizar estoques, entradas, saídas e demais indicadores do negócio, tornando a gestão mais eficiente e possibilitando o crescimento escalável do empreendimento.
