@@ -1,1 +1,0 @@
-Aqui constarão todas as pastas referentes ao desenvolvimento do front-end do projeto. 
