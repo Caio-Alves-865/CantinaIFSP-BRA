@@ -1,0 +1,35 @@
+# ========================
+# FRONTEND (Node / Vite)
+# ========================
+node_modules/
+frontend/node_modules/
+dist/
+frontend/dist/
+dist-ssr/
+*.local
+*.log
+
+# ========================
+# BACKEND (Python / Flask)
+# ========================
+venv/
+.venv/
+backend/venv/
+backend/.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+instance/
+backend/instance/
+*.db
+*.sqlite
+*.sqlite3
+
+# ========================
+# EDITORES E SISTEMA
+# ========================
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+Thumbs.db

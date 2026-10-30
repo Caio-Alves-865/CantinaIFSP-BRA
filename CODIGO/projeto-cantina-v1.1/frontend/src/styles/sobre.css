@@ -1,0 +1,186 @@
+/* =========================================
+   ESTILOS DA PÁGINA "SOBRE"
+   ========================================= */
+
+.sobre-main {
+  max-width: 1100px;
+  display: flex;
+  flex-direction: column;
+  gap: 4rem; /* Espaçamento grande entre as seções da página */
+}
+
+/* =========================================
+   SEÇÃO 1: INTRODUÇÃO
+   ========================================= */
+.sobre-introducao {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.texto-intro {
+  flex: 1;
+}
+
+.texto-intro h2 {
+  font-size: 2.2rem;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.texto-intro p {
+  font-size: 1.05rem;
+  color: var(--cor-texto-claro);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.imagem-intro {
+  flex: 1;
+  border-radius: var(--borda-raio);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+}
+
+.imagem-intro img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* =========================================
+   SEÇÃO 2: DADOS E ESTATÍSTICAS
+   ========================================= */
+.sobre-dados {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  background-color: var(--cor-card);
+  padding: 2.5rem;
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra-suave);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.card-dado {
+  flex: 1;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+.card-dado:last-child {
+  border-right: none;
+}
+
+.numero-dado {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--cor-primaria);
+}
+
+.legenda-dado {
+  font-size: 1rem;
+  color: var(--cor-texto-claro);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* =========================================
+   SEÇÃO 3: EQUIPE
+   ========================================= */
+.sobre-equipe {
+  text-align: center;
+}
+
+.sobre-equipe h3 {
+  font-size: 1.8rem;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo-equipe {
+  color: var(--cor-texto-claro);
+  margin-bottom: 3rem;
+  font-size: 1rem;
+}
+
+.grade-equipe {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.card-membro {
+  width: 160px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.card-membro:hover {
+  transform: translateY(-8px);
+}
+
+.foto-membro {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  border: 4px solid var(--cor-card);
+}
+
+.foto-membro img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.card-membro h4 {
+  font-size: 1.1rem;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.2rem;
+}
+
+.card-membro p {
+  font-size: 0.85rem;
+  color: var(--cor-primaria);
+  font-weight: 600;
+}
+
+/* =========================================
+   RESPONSIVIDADE
+   ========================================= */
+@media (max-width: 992px) {
+  .sobre-introducao {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .sobre-dados {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  
+  .card-dado {
+    border-right: none;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    padding-bottom: 1.5rem;
+  }
+  
+  .card-dado:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+}

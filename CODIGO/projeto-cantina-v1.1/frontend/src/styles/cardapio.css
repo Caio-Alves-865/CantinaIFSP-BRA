@@ -1,0 +1,35 @@
+/* =========================================
+   ESTILOS ESPECÍFICOS DO CARDÁPIO
+   ========================================= */
+
+.cardapio-main {
+  /* Volta para o centro já que não teremos barra lateral aqui */
+  max-width: 1200px;
+}
+
+.secao-categoria {
+  margin-bottom: 3rem;
+}
+
+.titulo-categoria {
+  font-size: 1.5rem;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--cor-secundaria);
+}
+
+/* Transformando a exibição em uma grade responsiva (quebra linha sozinho) */
+.grade-produtos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem;
+}
+
+/* Anulando as regras de scroll horizontal que vinham do estilos.css */
+.cardapio-main .card-produto {
+  min-width: unset;
+  max-width: unset;
+  scroll-snap-align: unset;
+  width: 100%;
+}

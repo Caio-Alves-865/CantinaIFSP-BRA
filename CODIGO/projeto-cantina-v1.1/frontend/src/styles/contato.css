@@ -1,0 +1,300 @@
+/* =========================================
+   ESTILOS DA PÁGINA DE CONTATO
+   ========================================= */
+
+.contato-main {
+  max-width: 1000px; /* Um pouco mais estreito para o form não ficar gigante */
+}
+
+.cabecalho-pagina {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.cabecalho-pagina h2 {
+  font-size: 2rem;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.5rem;
+}
+
+.cabecalho-pagina p {
+  color: var(--cor-texto-claro);
+  font-size: 1.05rem;
+}
+
+/* Estrutura de Duas Colunas */
+.layout-contato {
+  display: flex;
+  gap: 4rem;
+  align-items: flex-start;
+}
+
+/* =========================================
+   LADO ESQUERDO: REDES SOCIAIS E CONTATOS
+   ========================================= */
+.info-redes {
+  flex: 1;
+  background-color: var(--cor-card);
+  padding: 2rem;
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra-suave);
+}
+
+.info-redes h3 {
+  font-size: 1.3rem;
+  margin-bottom: 1.5rem;
+  color: var(--cor-texto-escuro);
+}
+
+.lista-contatos {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.item-contato {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  text-decoration: none;
+  color: var(--cor-texto-escuro);
+  font-weight: 500;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.item-contato:hover {
+  transform: translateX(5px);
+  color: var(--cor-primaria);
+}
+
+/* Ícones oficiais de cada rede social */
+.icone-social {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+  transition: transform 0.2s ease;
+}
+
+.item-contato:hover .icone-social {
+  transform: scale(1.08);
+}
+
+/* Cores oficiais das marcas */
+.whatsapp {
+  background-color: #25D366;
+  color: #FFFFFF;
+}
+
+.instagram {
+  background: radial-gradient(
+    circle at 30% 107%,
+    #fdf497 0%,
+    #fdf497 5%,
+    #fd5949 45%,
+    #d6249f 60%,
+    #285AEB 90%
+  );
+  color: #FFFFFF;
+}
+
+.facebook {
+  background-color: #1877F2;
+  color: #FFFFFF;
+}
+
+.email {
+  background-color: #d7b04e;
+  color: #353e3d;
+}
+
+/* =========================================
+   LADO DIREITO: FORMULÁRIO DE CONTATO
+   ========================================= */
+.area-formulario {
+  flex: 1.5; /* Ocupa um pouco mais de espaço que a coluna da esquerda */
+  background-color: var(--cor-card);
+  padding: 2.5rem;
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra-suave);
+}
+
+.form-contato {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grupo-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.grupo-input label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+}
+
+.grupo-input input,
+.grupo-input select,
+.grupo-input textarea {
+  font-family: var(--fonte-principal);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(53, 62, 61, 0.18);
+  border-radius: 8px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  transition: all 0.25s ease;
+  outline: none;
+}
+
+/* Efeito ao clicar no campo (Focus) na paleta do tema */
+.grupo-input input:focus,
+.grupo-input select:focus,
+.grupo-input textarea:focus {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(215, 176, 78, 0.25);
+  background-color: var(--cor-card);
+}
+
+/* =========================================
+   CAIXA DE SELEÇÃO CUSTOMIZADA
+   ========================================= */
+.select-customizado {
+  position: relative;
+  width: 100%;
+}
+
+.select-gatilho {
+  width: 100%;
+  font-family: var(--fonte-principal);
+  font-size: 1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid rgba(53, 62, 61, 0.18);
+  border-radius: 8px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: left;
+}
+
+.select-gatilho.aberto,
+.select-gatilho:focus {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(215, 176, 78, 0.25);
+  background-color: var(--cor-card);
+}
+
+.select-gatilho.erro-borda {
+  border-color: #d7b04e;
+}
+
+.texto-placeholder {
+  color: var(--cor-texto-claro);
+}
+
+.texto-selecionado {
+  color: var(--cor-texto-escuro);
+  font-weight: 500;
+}
+
+.seta-select {
+  font-size: 0.75rem;
+  color: var(--cor-primaria);
+  transition: transform 0.25s ease;
+}
+
+.select-gatilho.aberto .seta-select {
+  transform: rotate(180deg);
+}
+
+.select-opcoes {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-secundaria);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+  list-style: none;
+  overflow: hidden;
+  z-index: 500;
+  animation: fade 0.2s ease;
+}
+
+.opcao-item {
+  padding: 0.75rem 1rem;
+  font-size: 0.95rem;
+  color: var(--cor-texto-escuro);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.opcao-item.desabilitada {
+  color: var(--cor-texto-claro);
+  opacity: 0.65;
+  cursor: default;
+  border-bottom: 1px solid rgba(174, 183, 135, 0.2);
+}
+
+/* Hover e item selecionado 100% dentro da paleta (Verde Sálvia / Creme) */
+.opcao-item:not(.desabilitada):hover,
+.opcao-item.selecionada {
+  background-color: #66723b;
+  color: #FFFFFF;
+}
+
+:root.tema-escuro .select-gatilho {
+  border-color: rgba(236, 229, 203, 0.15);
+}
+
+:root.tema-escuro .select-opcoes {
+  background-color: #353e3d;
+  border-color: #66723b;
+}
+
+.btn-enviar {
+  background-color: var(--cor-primaria);
+  color: #fff;
+  font-family: var(--fonte-principal);
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 0.5rem;
+}
+
+.btn-enviar:hover {
+  background-color: #525c2f;
+}
+
+/* =========================================
+   RESPONSIVIDADE (CELULARES E TABLETS)
+   ========================================= */
+@media (max-width: 768px) {
+  .layout-contato {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .info-redes,
+  .area-formulario {
+    width: 100%;
+    padding: 1.5rem;
+  }
+}
