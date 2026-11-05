@@ -1,0 +1,1758 @@
+/* =========================================
+   VARIÁVEIS DE CORES E TIPOGRAFIA
+   ========================================= */
+:root {
+  --cor-fundo: #ece5cb;       /* Creme / Marfim para o fundo geral */
+  --cor-card: #FFFFFF;        /* Branco puro para destacar os blocos de conteúdo */
+  --cor-primaria: #66723b;    /* Verde Menta / Sálvia para ações principais */
+  --cor-secundaria: #aeb787;  /* Verde Oliva para equilíbrio visual */
+  --cor-destaque: #d7b04e;    /* Amarelo Mostarda / Dourado para elementos de destaque */
+  --cor-texto-escuro: #353e3d;/* Grafite / Verde-Militar Escuro para leitura confortável */
+  --cor-texto-claro: #5c6664; /* Tom intermediário derivado do grafite para textos secundários */
+  --cor-borda: rgba(53, 62, 61, 0.1);
+  
+  --fonte-principal: 'Inter', system-ui, -apple-system, sans-serif;
+  --sombra-suave: 0 4px 16px rgba(53, 62, 61, 0.08);
+  --borda-raio: 12px;
+}
+
+/* Reset Geral Avançado */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* Remove o flash azul padrão ao tocar em botões/cards no celular */
+}
+
+button,
+a,
+label,
+summary,
+[role="button"] {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html.reduzir-movimento {
+  scroll-behavior: auto;
+}
+
+html, body {
+  overflow-x: clip; /* Impede barras de rolagem horizontais sem quebrar o position: sticky */
+}
+
+body {
+  font-family: var(--fonte-principal);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Proteção global contra fundo branco/azul do autofill do navegador */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px var(--cor-card) inset !important;
+  -webkit-text-fill-color: var(--cor-texto-escuro) !important;
+  caret-color: var(--cor-texto-escuro) !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* =========================================
+   BARRA DE ROLAGEM GLOBAL E TEXTAREA TEMÁTICA
+   ========================================= */
+textarea {
+  resize: none !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+/* Barra de rolagem fina, sem setas e com fundo integrado ao tema em todo o site */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--cor-fundo);
+}
+
+textarea::-webkit-scrollbar,
+.corpo-modal-produto::-webkit-scrollbar {
+  width: 6px;
+}
+
+textarea::-webkit-scrollbar-track,
+.corpo-modal-produto::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 6px 0;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--cor-secundaria);
+  border-radius: 50px;
+  border: 2px solid var(--cor-fundo);
+}
+
+textarea::-webkit-scrollbar-thumb,
+.corpo-modal-produto::-webkit-scrollbar-thumb {
+  border: none;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--cor-destaque);
+}
+
+::-webkit-scrollbar-corner,
+::-webkit-resizer {
+  background: transparent;
+  display: none;
+}
+
+/* Fallback apenas para navegadores sem suporte a ::-webkit-scrollbar (ex.: Firefox) */
+@supports not selector(::-webkit-scrollbar) {
+  html,
+  textarea,
+  .corpo-modal-produto {
+    scrollbar-width: thin;
+    scrollbar-color: var(--cor-secundaria) var(--cor-fundo);
+  }
+}
+
+/* =========================================
+   HEADER & NAVEGAÇÃO RESPONSIVA
+   ========================================= */
+.cantina-header {
+  background-color: var(--cor-card);
+  border-bottom: 1px solid var(--cor-borda);
+  padding: 0.85rem 2.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: var(--sombra-suave);
+}
+
+/* Container do Logo com Ícone incorporado */
+.link-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+  color: var(--cor-texto-escuro);
+  transition: opacity 0.2s ease;
+}
+
+.link-logo h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+}
+
+.link-logo:hover {
+  opacity: 0.85;
+}
+
+.imagem-logo {
+  height: 76px;
+  margin: -7px 0; /* Aumenta a logo aproveitando o respiro interno sem alterar a altura da header */
+  width: auto;
+  object-fit: contain;
+}
+
+/* Esconde o checkbox do menu burguer por padrão */
+#menu-toggle {
+  display: none;
+}
+
+/* Estilização do botão hambúrguer (Label do checkbox) */
+.menu-burguer {
+  display: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  color: var(--cor-texto-escuro);
+  transition: background-color 0.2s ease;
+}
+
+.menu-burguer:hover {
+  background-color: var(--cor-fundo);
+}
+
+.cantina-nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.cantina-nav a {
+  color: var(--cor-texto-escuro);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.cantina-nav a:hover, 
+.cantina-nav li.ativo a {
+  background-color: var(--cor-secundaria);
+  color: #353e3d;
+  font-weight: 600;
+}
+
+:root.tema-escuro .cantina-nav a:hover,
+:root.tema-escuro .cantina-nav li.ativo a {
+  background-color: var(--cor-secundaria);
+  color: #ece5cb;
+}
+
+/* =========================================
+   CONTEÚDO PRINCIPAL (MAIN CENTRALIZADO)
+   ========================================= */
+.conteudo-principal {
+  flex: 1;
+  padding: 2.5rem 2rem;
+  max-width: 1280px; 
+  margin: 0 auto;
+  width: 100%;
+}
+
+.conteudo-principal h2 {
+  font-size: 1.65rem;
+  font-weight: 700;
+  margin-bottom: 1.25rem;
+  letter-spacing: -0.5px;
+  color: var(--cor-texto-escuro);
+}
+
+/* Títulos com ícone SVG alinhado */
+.titulo-com-icone {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+.icone-secao {
+  color: #353e3d;
+  flex-shrink: 0;
+}
+
+:root.tema-escuro .icone-secao {
+  color: var(--cor-destaque);
+}
+
+/* =========================================
+   FOOTER MODERNO
+   ========================================= */
+.cantina-footer {
+  background-color: var(--cor-card);
+  border-top: 1px solid var(--cor-borda);
+  padding: 2rem;
+  text-align: center;
+  margin-top: auto;
+}
+
+.cantina-footer p {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+  margin-bottom: 0.75rem;
+}
+
+.links-uteis {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.links-uteis a {
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.links-uteis a:hover {
+  color: var(--cor-primaria);
+}
+
+/* =========================================
+   CARROSSEL DE IMAGENS (BANNER PRINCIPAL)
+   ========================================= */
+.carrossel-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  margin-bottom: 2rem;
+  border-radius: var(--borda-raio);
+  overflow: hidden;
+  box-shadow: var(--sombra-suave);
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+}
+
+.slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  animation: fade 0.8s ease-in-out;
+}
+
+.slide.ativo {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  display: block;
+}
+
+/* Setas de navegação */
+.seta-carrossel {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  background-color: rgba(53, 62, 61, 0.7);
+  color: #ece5cb;
+  border: 1px solid rgba(236, 229, 203, 0.25);
+  border-radius: 50%;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: all 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
+
+.seta-carrossel:hover {
+  background-color: #66723b;
+  color: #FFFFFF;
+  transform: translateY(-50%) scale(1.08);
+}
+
+.anterior {
+  left: 15px;
+}
+
+.proxima {
+  right: 15px;
+}
+
+@keyframes fade {
+  from { opacity: 0.4; }
+  to { opacity: 1; }
+}
+
+/* =========================================
+   SEÇÃO DE PRODUTOS E ROLAGEM HORIZONTAL
+   ========================================= */
+.prateleira {
+  margin-bottom: 1rem;
+}
+
+.cabecalho-prateleira {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+}
+
+.ver-todos {
+  font-size: 0.9rem;
+  color: var(--cor-primaria);
+  text-decoration: none;
+  font-weight: 600;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.ver-todos:hover {
+  opacity: 0.8;
+  transform: translateX(3px);
+}
+
+.container-cards {
+  display: flex;
+  gap: 1.5rem;
+  overflow-x: auto;
+  padding: 0.25rem 0.25rem 1.25rem 0.25rem;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+}
+
+.container-cards::-webkit-scrollbar {
+  height: 8px;
+}
+
+.container-cards::-webkit-scrollbar-track {
+  background: rgba(53, 62, 61, 0.08); 
+  border-radius: 4px;
+}
+
+.container-cards::-webkit-scrollbar-thumb {
+  background: var(--cor-secundaria); 
+  border-radius: 4px;
+}
+
+.container-cards::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-primaria); 
+}
+
+.estado-vazio-busca {
+  background-color: var(--cor-card);
+  border: 1px dashed var(--cor-borda);
+  border-radius: var(--borda-raio);
+  padding: 2.5rem;
+  text-align: center;
+  color: var(--cor-texto-claro);
+}
+
+/* =========================================
+   DESIGN DO CARD DO PRODUTO
+   ========================================= */
+.card-produto {
+  background-color: var(--cor-card);
+  border-radius: var(--borda-raio);
+  min-width: 245px;
+  max-width: 245px;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid var(--cor-borda);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  scroll-snap-align: start;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.card-produto:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(53, 62, 61, 0.14);
+}
+
+.card-clicavel {
+  cursor: pointer;
+}
+
+.container-img-card {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+}
+
+.card-produto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.35s ease;
+}
+
+.card-clicavel:hover .container-img-card img {
+  transform: scale(1.05);
+}
+
+.badge-fotos-card {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: rgba(53, 62, 61, 0.82);
+  color: #ece5cb;
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.2rem 0.55rem;
+  border-radius: 50px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(236, 229, 203, 0.2);
+}
+
+.info-produto {
+  padding: 0.7rem 1.1rem 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.info-produto h4 {
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.25;
+  min-height: 2.5em;
+  margin-bottom: 0.35rem;
+  color: var(--cor-texto-escuro);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.info-produto p {
+  font-size: 0.85rem;
+  color: var(--cor-texto-claro);
+  margin-bottom: 0.95rem;
+  line-height: 1.42;
+  min-height: 4.26em;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.compra-produto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+  padding-top: 0.65rem;
+  border-top: 1px solid var(--cor-borda);
+  min-height: 44px;
+}
+
+.preco {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--cor-texto-escuro);
+}
+
+/* =========================================
+   ESTILOS DE DESTAQUE PARA ITENS EM PROMOÇÃO
+   ========================================= */
+/* Em repouso a borda continua neutra; fica dourada e sutilmente brilhante apenas no hover ou quando clicado/ativo */
+.card-produto.card-promocao {
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.card-produto.card-promocao:hover,
+.card-produto.card-promocao.card-promo-ativo {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 8px 22px rgba(215, 176, 78, 0.24), 0 0 0 1px rgba(215, 176, 78, 0.38);
+}
+
+:root.tema-escuro .card-produto.card-promocao:hover,
+:root.tema-escuro .card-produto.card-promocao.card-promo-ativo {
+  border-color: rgba(215, 176, 78, 0.85);
+  box-shadow: 0 8px 24px rgba(215, 176, 78, 0.22), 0 0 12px rgba(215, 176, 78, 0.18);
+}
+
+/* Selo flutuante de porcentagem no canto superior esquerdo da foto */
+.badge-desconto-card {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background-color: var(--cor-destaque);
+  color: #232928;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  padding: 0.22rem 0.6rem;
+  border-radius: 50px;
+  border: 1px solid rgba(35, 41, 40, 0.28);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.58), 0 0 12px rgba(0, 0, 0, 0.42);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.badge-desconto-modal {
+  top: 12px;
+  left: 12px;
+  font-size: 0.82rem;
+  padding: 0.28rem 0.75rem;
+}
+
+/* Título mantendo a cor original padrão, mas com um leve brilho dourado ao redor dos caracteres */
+.card-promocao .info-produto h4 {
+  padding: 6px 8px;
+  margin: -6px -8px calc(0.35rem - 6px);
+  min-height: calc(2.5em + 12px);
+}
+
+.card-promocao .info-produto h4,
+.modal-promocao .cabecalho-info-modal h3 {
+  color: var(--cor-texto-escuro);
+  text-shadow: 0 0 4px rgba(215, 176, 78, 0.28), 0 0 8px rgba(215, 176, 78, 0.12);
+}
+
+:root.tema-escuro .card-promocao .info-produto h4,
+:root.tema-escuro .modal-promocao .cabecalho-info-modal h3 {
+  color: var(--cor-texto-escuro);
+  text-shadow: 0 0 4px rgba(215, 176, 78, 0.35), 0 0 8px rgba(215, 176, 78, 0.16);
+}
+
+/* Preço antigo riscado menor + preço novo em dourado ao lado */
+.bloco-precos-card {
+  display: flex;
+  align-items: baseline;
+  gap: 0.42rem;
+  flex-wrap: wrap;
+}
+
+.preco-antigo {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cor-texto-claro);
+  text-decoration: line-through;
+  opacity: 0.85;
+}
+
+.preco.preco-promocional {
+  color: #b5871e;
+  font-weight: 800;
+}
+
+:root.tema-escuro .preco.preco-promocional {
+  color: var(--cor-destaque);
+}
+
+/* Borda dourada sutil e preços promocionais no Modal de Detalhes */
+.modal-produto-card.modal-promocao {
+  border-color: rgba(215, 176, 78, 0.75);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.35), 0 0 18px rgba(215, 176, 78, 0.22);
+}
+
+.linha-precos-modal {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+}
+
+.preco-antigo-modal {
+  font-size: 0.92rem;
+}
+
+.valor-preco-modal.valor-preco-modal-promo {
+  color: #b5871e;
+}
+
+:root.tema-escuro .valor-preco-modal.valor-preco-modal-promo {
+  color: var(--cor-destaque);
+}
+
+/* Botão de Adicionar Inicial (+) */
+.btn-adicionar {
+  background-color: var(--cor-secundaria);
+  color: #353e3d;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+:root.tema-escuro .btn-adicionar {
+  color: #ece5cb;
+}
+
+.btn-adicionar:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: scale(1.08);
+}
+
+/* =========================================
+   CONTROLE DE QUANTIDADE (- 1 +) NO CARD E MODAL
+   ========================================= */
+.controle-qtd-card {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-secundaria);
+  padding: 0.2rem 0.3rem;
+  border-radius: 50px;
+  animation: fade 0.2s ease;
+}
+
+.btn-qtd {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  line-height: 1;
+}
+
+.btn-qtd.menos {
+  background-color: transparent;
+  color: var(--cor-texto-escuro);
+}
+
+.btn-qtd.menos:hover {
+  background-color: rgba(215, 176, 78, 0.25);
+  color: var(--cor-destaque);
+}
+
+.btn-qtd.mais {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+}
+
+:root.tema-escuro .btn-qtd.mais {
+  background-color: #aeb787;
+  color: #232928;
+}
+
+.btn-qtd.mais:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+}
+
+.valor-qtd {
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+  min-width: 18px;
+  text-align: center;
+}
+
+/* =========================================
+   MODAL DE DETALHES DO PRODUTO E INGREDIENTES
+   ========================================= */
+.modal-produto-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(35, 41, 40, 0.65);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+  animation: fade 0.25s ease;
+}
+
+.modal-produto-card {
+  position: relative;
+  background-color: var(--cor-card);
+  width: 100%;
+  max-width: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  flex-direction: column;
+  max-height: 90vh;
+}
+
+.btn-fechar-modal-produto {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(236, 229, 203, 0.3);
+  background-color: rgba(53, 62, 61, 0.75);
+  color: #ece5cb;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.btn-fechar-modal-produto:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: scale(1.08);
+}
+
+/* Galeria de fotos dentro do modal */
+.galeria-modal-produto {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  background-color: var(--cor-fundo);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.foto-modal-slide {
+  display: none;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: fade 0.45s ease;
+}
+
+.foto-modal-slide.ativo {
+  display: block;
+}
+
+.seta-galeria-modal {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid rgba(236, 229, 203, 0.3);
+  background-color: rgba(53, 62, 61, 0.7);
+  color: #ece5cb;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.2s ease;
+}
+
+.seta-galeria-modal:hover {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+}
+
+.seta-galeria-modal.anterior {
+  left: 12px;
+}
+
+.seta-galeria-modal.proxima {
+  right: 12px;
+}
+
+.indicadores-galeria-modal {
+  position: absolute;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 0.45rem;
+  background-color: rgba(53, 62, 61, 0.65);
+  padding: 0.35rem 0.65rem;
+  border-radius: 50px;
+  backdrop-filter: blur(4px);
+}
+
+.ponto-galeria {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background-color: rgba(236, 229, 203, 0.45);
+  cursor: pointer;
+  transition: all 0.25s ease;
+  padding: 0;
+}
+
+.ponto-galeria.ativo {
+  width: 20px;
+  border-radius: 10px;
+  background-color: var(--cor-destaque);
+}
+
+/* Corpo e Ingredientes do Modal */
+.corpo-modal-produto {
+  padding: 1.5rem 1.75rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+.cabecalho-info-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.tag-categoria-modal {
+  align-self: flex-start;
+  background-color: var(--cor-secundaria);
+  color: #353e3d;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 0.25rem 0.75rem;
+  border-radius: 50px;
+}
+
+:root.tema-escuro .tag-categoria-modal {
+  color: #ece5cb;
+}
+
+.cabecalho-info-modal h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+.descricao-detalhada-modal {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--cor-texto-claro);
+}
+
+.secao-ingredientes-modal h4 {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.lista-ingredientes-modal {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag-ingrediente {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  border: 1px solid var(--cor-borda);
+  font-size: 0.85rem;
+  font-weight: 500;
+  padding: 0.35rem 0.8rem;
+  border-radius: 50px;
+}
+
+/* Pílula de ingrediente potencialmente alergênico (Dourado/Âmbar da paleta) */
+.tag-ingrediente.alergenico {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  max-width: max-content;
+  flex: 0 0 auto;
+  background-color: rgba(215, 176, 78, 0.14);
+  border-color: rgba(215, 176, 78, 0.48);
+  color: var(--cor-texto-escuro);
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+:root.tema-escuro .tag-ingrediente.alergenico {
+  color: #f3d78b;
+  background-color: rgba(215, 176, 78, 0.14);
+  border-color: rgba(215, 176, 78, 0.45);
+}
+
+.tag-ingrediente.alergenico:hover,
+.tag-ingrediente.alergenico.ativo {
+  background-color: rgba(215, 176, 78, 0.28);
+  border-color: var(--cor-destaque);
+}
+
+/* Pílula de ingrediente com alerta reforçado pelo perfil do usuário (Vermelho com brilho de fundo e texto na mesma cor dos outros ingredientes) */
+.tag-ingrediente.alergenico.alergia-perfil {
+  --alergia-glow-min: rgba(217, 56, 71, 0.28);
+  --alergia-border-min: #d93847;
+  --alergia-glow-max: rgba(217, 56, 71, 0.6);
+  --alergia-border-max: #ff4759;
+  background-color: rgba(217, 56, 71, 0.16);
+  border: 1.5px solid var(--alergia-border-min);
+  color: var(--cor-texto-escuro) !important;
+  font-weight: 600;
+  box-shadow: 0 0 8px var(--alergia-glow-min);
+  animation: pulsoBrilhoAlergia 2.2s ease-in-out infinite;
+  position: relative;
+  width: fit-content;
+  max-width: max-content;
+  flex: 0 0 auto;
+}
+
+:root.tema-escuro .tag-ingrediente.alergenico.alergia-perfil {
+  --alergia-glow-min: rgba(255, 82, 99, 0.32);
+  --alergia-border-min: #ff5263;
+  --alergia-glow-max: rgba(255, 82, 99, 0.65);
+  --alergia-border-max: #ff7583;
+  background-color: rgba(232, 74, 95, 0.22);
+  border-color: var(--alergia-border-min);
+  color: var(--cor-texto-escuro) !important;
+  box-shadow: 0 0 10px var(--alergia-glow-min);
+}
+
+.tag-ingrediente.alergenico.alergia-perfil .texto-ingrediente-modal {
+  position: relative;
+  z-index: 2;
+  text-shadow: none !important;
+  color: inherit;
+}
+
+.tag-ingrediente.alergenico.alergia-perfil:hover,
+.tag-ingrediente.alergenico.alergia-perfil.ativo {
+  background-color: rgba(217, 56, 71, 0.24);
+  border-color: #c92a39;
+  box-shadow: 0 0 14px rgba(217, 56, 71, 0.6);
+}
+
+:root.tema-escuro .tag-ingrediente.alergenico.alergia-perfil:hover,
+:root.tema-escuro .tag-ingrediente.alergenico.alergia-perfil.ativo {
+  background-color: rgba(232, 74, 95, 0.32);
+  border-color: #ff707f;
+  box-shadow: 0 0 16px rgba(255, 82, 99, 0.65);
+}
+
+.tag-ingrediente.alergenico.alergia-perfil .icone-info-alergia {
+  color: #d93847;
+  font-weight: 800;
+  margin-right: 0.15rem;
+  position: relative;
+  z-index: 2;
+}
+
+:root.tema-escuro .tag-ingrediente.alergenico.alergia-perfil .icone-info-alergia {
+  color: #ff6b77;
+}
+
+@keyframes pulsoBrilhoAlergia {
+  0%, 100% {
+    box-shadow: 0 0 6px var(--alergia-glow-min);
+    border-color: var(--alergia-border-min);
+  }
+  50% {
+    box-shadow: 0 0 14px var(--alergia-glow-max);
+    border-color: var(--alergia-border-max);
+  }
+}
+
+/* Acessibilidade: respeita preferências de animações reduzidas */
+html.reduzir-movimento .tag-ingrediente.alergenico.alergia-perfil {
+  animation: none;
+  box-shadow: 0 0 8px rgba(217, 56, 71, 0.35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tag-ingrediente.alergenico.alergia-perfil {
+    animation: none;
+    box-shadow: 0 0 8px rgba(217, 56, 71, 0.35);
+  }
+}
+
+/* Balão popover com detalhe vermelho para alerta de alergia do perfil */
+.tag-ingrediente.alergenico.alergia-perfil .balao-alergia-popover {
+  border-color: #d93847;
+  color: #ffe6e8;
+  background-color: #27191b;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.45), 0 0 10px rgba(217, 56, 71, 0.3);
+  position: absolute !important;
+  z-index: 100;
+}
+
+.tag-ingrediente.alergenico.alergia-perfil .balao-alergia-popover::before {
+  border-top-color: #d93847;
+}
+
+.icone-info-alergia {
+  font-size: 0.92rem;
+  line-height: 1;
+  color: var(--cor-destaque);
+  font-weight: 700;
+}
+
+/* Balão flutuante (estilo conversa/tooltip) exatamente acima da pílula clicada */
+.balao-alergia-popover {
+  position: absolute !important;
+  bottom: calc(100% + 10px);
+  left: 0;
+  background-color: #232928;
+  color: #f3d78b;
+  border: 1px solid var(--cor-destaque);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  z-index: 100;
+  pointer-events: none;
+  animation: fade 0.18s ease;
+}
+
+/* Pontinha triangular do balão apontando para a pílula embaixo */
+.balao-alergia-popover::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 16px;
+  border-width: 6px;
+  border-style: solid;
+  border-color: var(--cor-destaque) transparent transparent transparent;
+}
+
+.balao-alergia-popover::after {
+  content: '';
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 17px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #232928 transparent transparent transparent;
+}
+
+/* Ajuste automático quando a pílula estiver no lado direito do modal */
+.balao-alergia-popover.alinhar-direita {
+  left: auto;
+  right: 0;
+}
+
+.balao-alergia-popover.alinhar-direita::before {
+  left: auto;
+  right: 16px;
+}
+
+.balao-alergia-popover.alinhar-direita::after {
+  left: auto;
+  right: 17px;
+}
+
+/* Rodapé de compra dentro do Modal */
+.rodape-modal-produto {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 1.1rem;
+  margin-top: 0.25rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.bloco-preco-modal {
+  display: flex;
+  flex-direction: column;
+}
+
+.rotulo-preco-modal {
+  font-size: 0.78rem;
+  color: var(--cor-texto-claro);
+}
+
+.valor-preco-modal {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--cor-texto-escuro);
+}
+
+.btn-adicionar-modal-inicial {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  padding: 0.7rem 1.4rem;
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+:root.tema-escuro .btn-adicionar-modal-inicial {
+  background-color: #aeb787;
+  color: #232928;
+}
+
+.btn-adicionar-modal-inicial:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: translateY(-1px);
+}
+
+.controle-qtd-modal {
+  padding: 0.3rem 0.45rem;
+  gap: 0.75rem;
+}
+
+.controle-qtd-modal .btn-qtd {
+  width: 32px;
+  height: 32px;
+  font-size: 1.15rem;
+}
+
+.controle-qtd-modal .valor-qtd {
+  font-size: 1.05rem;
+  min-width: 24px;
+}
+
+.link-login-modal {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 0.65rem 1.25rem;
+  border-radius: 50px;
+  transition: all 0.2s ease;
+}
+
+.link-login-modal:hover {
+  background-color: #c49d3c;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   PESQUISA E FILTROS DE CATEGORIA
+   ========================================= */
+.pesquisa-filtros {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.barra-pesquisa {
+  display: flex;
+  align-items: center;
+  background-color: var(--cor-card);
+  border-radius: 50px;
+  padding: 0.8rem 1.4rem;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid var(--cor-borda);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.barra-pesquisa:focus-within {
+  box-shadow: 0 0 0 3px rgba(215, 176, 78, 0.25);
+  border-color: var(--cor-destaque);
+}
+
+.icone-lupa {
+  color: var(--cor-texto-claro);
+  margin-right: 0.8rem;
+  flex-shrink: 0;
+}
+
+.barra-pesquisa input {
+  border: none;
+  outline: none;
+  width: 100%;
+  font-family: var(--fonte-principal);
+  font-size: 0.98rem;
+  color: var(--cor-texto-escuro);
+  background: transparent;
+}
+
+.barra-pesquisa input::placeholder {
+  color: var(--cor-texto-claro);
+}
+
+/* Botões de filtro (Pílulas) */
+.filtros-categoria {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+
+.filtros-categoria::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-filtro {
+  background-color: var(--cor-card);
+  color: var(--cor-texto-claro);
+  border: 1px solid var(--cor-borda);
+  padding: 0.55rem 1.25rem;
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: var(--sombra-suave);
+}
+
+.btn-filtro:hover {
+  background-color: var(--cor-secundaria);
+  color: #353e3d;
+}
+
+:root.tema-escuro .btn-filtro:hover {
+  color: #ece5cb;
+}
+
+.btn-filtro.ativo {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border-color: var(--cor-primaria);
+}
+
+:root.tema-escuro .btn-filtro.ativo {
+  background-color: #aeb787;
+  color: #232928;
+  border-color: #aeb787;
+}
+
+/* =========================================
+   LAYOUT DE DUAS COLUNAS (ALINHADO E PROPORCIONAL)
+   ========================================= */
+.layout-duas-colunas {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+.coluna-principal {
+  min-width: 0;
+  width: 100%;
+}
+
+.coluna-lateral {
+  width: 100%;
+  position: relative;
+}
+
+/* =========================================
+   WIDGET DE PROMOÇÕES (COLUNA LATERAL)
+   ========================================= */
+.widget-ofertas {
+  background-color: var(--cor-card);
+  border-radius: var(--borda-raio);
+  padding: 1.5rem;
+  box-shadow: var(--sombra-suave);
+  border: 1px solid var(--cor-borda);
+  will-change: transform;
+}
+
+.titulo-ofertas {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 2px solid var(--cor-fundo);
+}
+
+.carrossel-promocoes {
+  position: relative;
+  width: 100%;
+}
+
+.promo-slide {
+  display: none; 
+  width: 100%;
+  min-width: 100%;
+  max-width: 100%;
+  animation: fade 0.5s ease-in-out;
+  box-shadow: none;
+  background-color: var(--cor-fundo);
+}
+
+.promo-slide:hover {
+  transform: none;
+}
+
+.promo-slide.ativo {
+  display: flex; 
+}
+
+.promo-slide .container-img-card {
+  height: 165px;
+}
+
+.promo-slide img {
+  height: 100%;
+}
+
+/* Controles e indicadores embaixo do card de promoção */
+.controles-promo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.1rem;
+  padding: 0 0.25rem;
+}
+
+.indicadores-promo {
+  display: flex;
+  gap: 0.45rem;
+  align-items: center;
+  background-color: rgba(53, 62, 61, 0.65);
+  padding: 0.35rem 0.65rem;
+  border-radius: 50px;
+  backdrop-filter: blur(4px);
+}
+
+.ponto-promo {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(236, 229, 203, 0.45);
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.ponto-promo.ativo,
+:root.tema-escuro .ponto-promo.ativo {
+  width: 20px;
+  border-radius: 10px;
+  background-color: var(--cor-destaque);
+}
+
+.seta-promo {
+  background-color: var(--cor-secundaria);
+  color: #353e3d;
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+:root.tema-escuro .seta-promo {
+  color: #ece5cb;
+}
+
+.seta-promo:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: scale(1.08);
+}
+
+/* =========================================
+   ESTILOS DINÂMICOS DO CABEÇALHO (LOGIN/USER)
+   ========================================= */
+.btn-nav-login {
+  background-color: var(--cor-destaque);
+  color: #353e3d !important;
+  padding: 0.5rem 1.3rem !important;
+  border-radius: 50px !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease;
+}
+
+.btn-nav-login:hover {
+  background-color: #c49d3c !important;
+  text-decoration: none !important;
+  transform: translateY(-1px);
+}
+
+/* Container do Menu do Usuário */
+.menu-usuario-container {
+  position: relative;
+}
+
+.btn-nav-perfil {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  transition: all 0.2s ease;
+}
+
+.btn-nav-perfil:hover {
+  border-color: var(--cor-primaria);
+  color: var(--cor-primaria);
+}
+
+.setinha {
+  font-size: 0.65rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-nav-perfil.aberto .setinha {
+  transform: rotate(180deg);
+}
+
+/* Dropdown de Logout */
+.dropdown-oculto {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background-color: #FFFFFF;
+  border: 1px solid rgba(53, 62, 61, 0.18);
+  box-shadow: 0 10px 25px rgba(53, 62, 61, 0.18);
+  border-radius: 8px;
+  min-width: 160px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-8px);
+  transition: all 0.2s ease;
+  z-index: 2000;
+}
+
+:root.tema-escuro .dropdown-oculto {
+  background-color: var(--cor-card);
+  border-color: var(--cor-borda);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.dropdown-oculto.mostrar {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-oculto .btn-dropdown-config {
+  display: block;
+  width: 100%;
+  background-color: transparent;
+  padding: 0.82rem 1rem !important;
+  text-align: left;
+  font-family: var(--fonte-principal);
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--cor-texto-escuro) !important;
+  text-decoration: none !important;
+  border-bottom: 1px solid var(--cor-borda);
+  border-radius: 8px 8px 0 0;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.dropdown-oculto .btn-dropdown-config:hover {
+  background-color: var(--cor-fundo);
+  color: var(--cor-primaria) !important;
+}
+
+:root.tema-escuro .dropdown-oculto .btn-dropdown-config:hover {
+  color: var(--cor-destaque) !important;
+}
+
+.btn-sair {
+  width: 100%;
+  background-color: #FFFFFF;
+  border: none;
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-family: var(--fonte-principal);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #b8323e;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  border-radius: 0 0 8px 8px;
+}
+
+.btn-sair:hover {
+  background-color: #fbe9eb;
+  color: #8f1d28;
+}
+
+:root.tema-escuro .btn-sair {
+  background-color: transparent;
+  color: #d7b04e;
+  font-weight: 600;
+}
+
+:root.tema-escuro .btn-sair:hover {
+  background-color: var(--cor-fundo);
+  color: #d7b04e;
+}
+
+.item-tema {
+  list-style: none !important;
+  display: flex;
+  align-items: center; 
+}
+
+/* =========================================
+   MODO ESCURO
+   ========================================= */
+:root.tema-escuro {
+  --cor-fundo: #232928;       /* Versão mais escura do Grafite / Verde-Militar (#353e3d) */
+  --cor-card: #353e3d;        /* Grafite / Verde-Militar Escuro nos cards */
+  --cor-texto-escuro: #ece5cb;/* Creme / Marfim nos textos principais */
+  --cor-texto-claro: #aeb787; /* Verde Oliva nos textos secundários */
+  --cor-borda: rgba(236, 229, 203, 0.12);
+  
+  --cor-primaria: #aeb787;    /* Verde Oliva para destacar ações no fundo escuro */
+  --cor-secundaria: #66723b;  /* Verde Menta / Sálvia */
+  --cor-destaque: #d7b04e;    /* Amarelo Mostarda / Dourado */
+  --sombra-suave: 0 4px 16px rgba(0, 0, 0, 0.35); 
+}
+
+.btn-tema {
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: transform 0.3s ease, background-color 0.2s ease;
+}
+
+.btn-tema:hover {
+  transform: scale(1.1);
+  background-color: var(--cor-fundo);
+}
+
+.icone-lua {
+  display: block;
+  color: var(--cor-texto-escuro); 
+}
+
+.icone-sol {
+  display: none;
+}
+
+:root.tema-escuro .icone-lua { display: none; }
+:root.tema-escuro .icone-sol { display: block; color: #d7b04e; }
+
+/* =========================================
+   RESPONSIVIDADE (TABLETS E CELULARES)
+   ========================================= */
+@media (max-width: 992px) {
+  .layout-duas-colunas {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .coluna-lateral {
+    position: static;
+  }
+
+  .promo-slide img {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cantina-header {
+    padding: 0.85rem 1.25rem;
+  }
+
+  .link-logo h1 {
+    font-size: 1.2rem;
+  }
+
+  .imagem-logo {
+    height: 58px;
+    margin: -5px 0;
+  }
+
+  .menu-burguer {
+    display: block;
+  }
+
+  .cantina-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--cor-card);
+    border-bottom: 1px solid var(--cor-borda);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.15);
+  }
+
+  .cantina-nav ul {
+    flex-direction: column;
+    width: 100%;
+    padding: 1rem;
+    gap: 0.5rem;
+    align-items: stretch;
+  }
+
+  .cantina-nav a {
+    display: block;
+    padding: 0.75rem 1rem;
+    width: 100%;
+  }
+
+  #menu-toggle:checked ~ .cantina-nav {
+    max-height: 600px;
+    overflow-y: auto;
+  }
+
+  .dropdown-oculto {
+    position: static;
+    box-shadow: none;
+    border: none;
+    border-left: 3px solid var(--cor-destaque);
+    border-radius: 0;
+    margin-top: 0.5rem;
+    background-color: var(--cor-fundo);
+    display: none; 
+    transform: none; 
+  }
+
+  .dropdown-oculto.mostrar {
+    display: block; 
+  }
+
+  .carrossel-container {
+    height: 190px;
+  }
+
+  .seta-carrossel {
+    width: 32px;
+    height: 32px;
+    font-size: 0.95rem;
+  }
+
+  .conteudo-principal {
+    padding: 1.75rem 1.25rem;
+  }
+}

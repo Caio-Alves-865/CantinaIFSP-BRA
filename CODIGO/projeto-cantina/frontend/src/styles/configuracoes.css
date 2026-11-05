@@ -1,0 +1,1799 @@
+/* =========================================
+   PÁGINA DE CONFIGURAÇÕES DA CONTA (/configuracoes)
+   ========================================= */
+.configuracoes-main {
+  max-width: 1120px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cabecalho-pagina-config {
+  margin-bottom: 1.75rem;
+}
+
+.titulo-pagina-config {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icone-moldura-config {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #353e3d;
+  flex-shrink: 0;
+}
+
+:root.tema-escuro .icone-moldura-config {
+  color: var(--cor-destaque);
+}
+
+.titulo-pagina-config h2 {
+  font-size: 1.65rem;
+  font-weight: 800;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.2rem;
+}
+
+.titulo-pagina-config p {
+  font-size: 0.94rem;
+  color: var(--cor-texto-claro);
+}
+
+/* Alerta / Toast interno de salvamento */
+.alerta-feedback-config {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  margin-bottom: 1.35rem;
+  animation: fade 0.25s ease;
+}
+
+.alerta-feedback-config.sucesso {
+  background-color: rgba(102, 114, 59, 0.16);
+  border: 1px solid var(--cor-primaria);
+  color: var(--cor-texto-escuro);
+}
+
+.alerta-feedback-config.erro {
+  background-color: rgba(184, 50, 62, 0.14);
+  border: 1px solid rgba(184, 50, 62, 0.55);
+  color: #b8323e;
+}
+
+:root.tema-escuro .alerta-feedback-config.erro {
+  color: #ff8e99;
+}
+
+/* Layout de Sistema de Configurações (Menu Lateral + Painel Principal) */
+.layout-sistema-config {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 1.85rem;
+  align-items: start;
+}
+
+.menu-lateral-config {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--borda-raio);
+  padding: 0.75rem;
+  box-shadow: var(--sombra-suave);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.aba-menu-config {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 0.85rem 0.95rem;
+  cursor: pointer;
+  font-family: var(--fonte-principal);
+  color: var(--cor-texto-escuro);
+  transition: all 0.2s ease;
+}
+
+.aba-menu-config svg {
+  flex-shrink: 0;
+  color: var(--cor-texto-claro);
+  transition: color 0.2s ease;
+}
+
+.aba-menu-config:hover {
+  background-color: var(--cor-fundo);
+}
+
+.aba-menu-config.ativa {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border-color: var(--cor-primaria);
+}
+
+:root.tema-escuro .aba-menu-config.ativa {
+  background-color: rgba(174, 183, 135, 0.18);
+  border-color: var(--cor-destaque);
+  color: var(--cor-texto-escuro);
+}
+
+.aba-menu-config.ativa svg {
+  color: #FFFFFF;
+}
+
+:root.tema-escuro .aba-menu-config.ativa svg {
+  color: var(--cor-destaque);
+}
+
+.texto-aba-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.12rem;
+}
+
+.texto-aba-config strong {
+  font-size: 0.94rem;
+  font-weight: 700;
+}
+
+.texto-aba-config span {
+  font-size: 0.76rem;
+  opacity: 0.82;
+}
+
+/* Painel Principal de Conteúdo */
+.painel-conteudo-config {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--borda-raio);
+  padding: 2rem;
+  box-shadow: var(--sombra-suave);
+}
+
+.bloco-secao-config {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: fade 0.22s ease;
+}
+
+.cabecalho-bloco-config h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.3rem;
+}
+
+.cabecalho-bloco-config p {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.5;
+}
+
+.grade-campos-config {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.35rem;
+}
+
+.grade-campos-config.coluna-unica-seguranca {
+  grid-template-columns: minmax(0, 480px);
+}
+
+.campo-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.campo-config.campo-largura-total {
+  grid-column: 1 / -1;
+}
+
+.campo-config label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+.linha-label-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.badge-status-config {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.2rem 0.65rem;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.badge-status-config.verificado {
+  background-color: rgba(102, 114, 59, 0.18);
+  color: var(--cor-primaria);
+}
+
+:root.tema-escuro .badge-status-config.verificado {
+  color: #aeb787;
+  background-color: rgba(174, 183, 135, 0.2);
+}
+
+.badge-status-config.bloqueado {
+  background-color: rgba(215, 176, 78, 0.2);
+  color: #9e7413;
+}
+
+:root.tema-escuro .badge-status-config.bloqueado {
+  color: var(--cor-destaque);
+}
+
+.badge-status-config.pendente {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-claro);
+  border: 1px solid var(--cor-borda);
+}
+
+.campo-config input {
+  width: 100%;
+  padding: 0.78rem 1rem;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.campo-config input:focus:not(:disabled) {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(215, 176, 78, 0.22);
+}
+
+.campo-config input.input-somente-leitura,
+.campo-config input:disabled {
+  opacity: 0.72;
+  cursor: not-allowed;
+}
+
+.dica-campo-config {
+  font-size: 0.78rem;
+  color: var(--cor-texto-claro);
+}
+
+/* =========================================
+   DATEPICKER CUSTOMIZADO (DATA DE NASCIMENTO)
+   ========================================= */
+.campo-data-nascimento-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.datepicker-custom-wrapper {
+  position: relative;
+  width: 210px;
+  max-width: 100%;
+}
+
+.datepicker-input-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.datepicker-input {
+  width: 100%;
+  padding: 0.78rem 2.6rem 0.78rem 1rem !important;
+  border-radius: 10px;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.datepicker-input:focus:not(:disabled) {
+  border-color: var(--cor-destaque);
+  box-shadow: 0 0 0 3px rgba(215, 176, 78, 0.22);
+}
+
+.datepicker-custom-wrapper.com-erro .datepicker-input {
+  border-color: #b8323e;
+  box-shadow: 0 0 0 2px rgba(184, 50, 62, 0.2);
+}
+
+.datepicker-btn-toggle {
+  position: absolute;
+  right: 0.45rem;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--cor-texto-claro);
+  transition: all 0.2s ease;
+}
+
+.datepicker-btn-toggle:hover:not(:disabled) {
+  background-color: rgba(53, 62, 61, 0.08);
+  color: var(--cor-texto-escuro);
+}
+
+:root.tema-escuro .datepicker-btn-toggle {
+  color: var(--cor-destaque);
+}
+
+:root.tema-escuro .datepicker-btn-toggle:hover:not(:disabled) {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+}
+
+.datepicker-btn-toggle:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Popover flutuante do Calendário */
+.datepicker-popover {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  z-index: 120;
+  width: 290px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 14px;
+  padding: 0.9rem;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.16), 0 3px 8px rgba(0, 0, 0, 0.06);
+  animation: fade 0.18s ease-out;
+}
+
+:root.tema-escuro .datepicker-popover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(215, 176, 78, 0.15);
+}
+
+.datepicker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.35rem;
+  margin-bottom: 0.8rem;
+}
+
+.datepicker-btn-nav {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  font-size: 1.2rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.datepicker-btn-nav:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+}
+
+.datepicker-seletores {
+  display: flex;
+  gap: 0.4rem;
+  flex: 1;
+  justify-content: center;
+}
+
+.datepicker-select-mes,
+.datepicker-select-ano {
+  padding: 0.32rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  font-family: var(--fonte-principal);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  outline: none;
+}
+
+.datepicker-select-mes:focus,
+.datepicker-select-ano:focus {
+  border-color: var(--cor-destaque);
+}
+
+.datepicker-dias-semana {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  text-align: center;
+  gap: 2px;
+  margin-bottom: 0.4rem;
+}
+
+.datepicker-dia-semana-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cor-texto-claro);
+  text-transform: uppercase;
+}
+
+.datepicker-grade-dias {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 3px;
+  text-align: center;
+}
+
+.datepicker-celula-vazia {
+  height: 32px;
+}
+
+.datepicker-btn-dia {
+  height: 32px;
+  width: 32px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--cor-texto-escuro);
+  font-size: 0.86rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.datepicker-btn-dia:hover:not(:disabled) {
+  background-color: rgba(215, 176, 78, 0.22);
+  color: var(--cor-texto-escuro);
+}
+
+.datepicker-btn-dia.selecionado {
+  background-color: var(--cor-primaria) !important;
+  color: #FFFFFF !important;
+  font-weight: 700;
+}
+
+:root.tema-escuro .datepicker-btn-dia.selecionado {
+  background-color: var(--cor-destaque) !important;
+  color: #232928 !important;
+}
+
+.datepicker-btn-dia.hoje {
+  border-color: var(--cor-destaque);
+  font-weight: 700;
+}
+
+.datepicker-btn-dia.desabilitado,
+.datepicker-btn-dia:disabled {
+  opacity: 0.28;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.datepicker-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.75rem;
+  padding-top: 0.55rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.datepicker-btn-atalho {
+  background: transparent;
+  border: none;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+:root.tema-escuro .datepicker-btn-atalho {
+  color: var(--cor-destaque);
+}
+
+.datepicker-btn-atalho.fechar {
+  color: var(--cor-texto-claro);
+  font-weight: 500;
+}
+
+.datepicker-btn-atalho:hover {
+  background-color: rgba(53, 62, 61, 0.08);
+}
+
+/* Microcopy de IHC para a Data de Nascimento (Write-Once) */
+.aviso-ihc-aniversario {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  margin-top: 0.25rem;
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  background-color: rgba(215, 176, 78, 0.14);
+  border: 1px solid rgba(215, 176, 78, 0.45);
+  color: var(--cor-texto-escuro);
+  font-size: 0.85rem;
+  line-height: 1.45;
+  max-width: 620px;
+}
+
+.aviso-ihc-aniversario.travado {
+  background-color: var(--cor-fundo);
+  border-color: var(--cor-borda);
+  color: var(--cor-texto-claro);
+}
+
+.icone-aviso-ihc {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: #9e7413;
+}
+
+:root.tema-escuro .icone-aviso-ihc {
+  color: var(--cor-destaque);
+}
+
+/* =========================================
+   MODAL DE CONFIRMAÇÃO DA DATA DE NASCIMENTO
+   ========================================= */
+.modal-confirmar-data-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  animation: fade 0.2s ease-out;
+}
+
+.card-modal-confirmar-data {
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 425px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+  overflow: hidden;
+  animation: zoomIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.cabecalho-modal-confirmar-data {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--cor-borda);
+  background-color: rgba(102, 114, 59, 0.08);
+}
+
+:root.tema-escuro .cabecalho-modal-confirmar-data {
+  background-color: rgba(174, 183, 135, 0.1);
+}
+
+.icone-destaque-modal-data {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(215, 176, 78, 0.22);
+  color: #9e7413;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:root.tema-escuro .icone-destaque-modal-data {
+  color: var(--cor-destaque);
+}
+
+.cabecalho-modal-confirmar-data h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--cor-texto-escuro);
+  margin-bottom: 0.1rem;
+}
+
+.cabecalho-modal-confirmar-data p {
+  font-size: 0.78rem;
+  color: var(--cor-texto-claro);
+}
+
+.btn-fechar-modal-data {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  font-size: 1.45rem;
+  line-height: 1;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  transition: all 0.15s ease;
+}
+
+.btn-fechar-modal-data:hover {
+  color: var(--cor-texto-escuro);
+  background-color: rgba(53, 62, 61, 0.08);
+}
+
+.corpo-modal-confirmar-data {
+  padding: 1.1rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.caixa-data-destaque {
+  background: var(--cor-fundo);
+  border: 1.5px solid var(--cor-destaque);
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.rotulo-caixa-data {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--cor-texto-claro);
+}
+
+.valor-data-destaque {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: var(--cor-texto-escuro);
+  letter-spacing: 1.2px;
+}
+
+.valor-data-extenso {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+}
+
+:root.tema-escuro .valor-data-extenso {
+  color: var(--cor-destaque);
+}
+
+.aviso-modal-gravacao-unica {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  background-color: rgba(215, 176, 78, 0.14);
+  border: 1px solid rgba(215, 176, 78, 0.45);
+  font-size: 0.83rem;
+  line-height: 1.45;
+  color: var(--cor-texto-escuro);
+}
+
+.icone-aviso-modal {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  color: #9e7413;
+  margin-top: 0.15rem;
+}
+
+:root.tema-escuro .icone-aviso-modal {
+  color: var(--cor-destaque);
+}
+
+.texto-aviso-modal {
+  flex: 1;
+}
+
+.texto-aviso-modal p {
+  margin: 0;
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.pergunta-confirmacao-modal {
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-align: center;
+  width: 100%;
+  margin: 0.15rem auto 0;
+  hyphens: none;
+  -webkit-hyphens: none;
+  color: var(--cor-texto-escuro);
+  display: block;
+}
+
+.rodape-modal-confirmar-data {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.65rem;
+  padding: 0.85rem 1.25rem;
+  border-top: 1px solid var(--cor-borda);
+  background-color: var(--cor-fundo);
+}
+
+.btn-modal-cancelar {
+  background: transparent;
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-escuro);
+  padding: 0.58rem 1.2rem;
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-weight: 600;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-cancelar:hover {
+  background-color: rgba(53, 62, 61, 0.08);
+}
+
+.btn-modal-confirmar {
+  background-color: var(--cor-primaria);
+  border: none;
+  color: #FFFFFF;
+  padding: 0.58rem 1.3rem;
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-weight: 700;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-modal-confirmar:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: translateY(-1px);
+}
+
+:root.tema-escuro .btn-modal-confirmar {
+  background-color: #aeb787;
+  color: #232928;
+}
+
+:root.tema-escuro .btn-modal-confirmar:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+}
+
+/* Botão de Salvar */
+.rodape-acoes-config {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--cor-borda);
+}
+
+.btn-salvar-config {
+  background-color: var(--cor-primaria);
+  color: #FFFFFF;
+  border: none;
+  border-radius: 50px;
+  padding: 0.78rem 1.75rem;
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+:root.tema-escuro .btn-salvar-config {
+  background-color: #aeb787;
+  color: #232928;
+}
+
+.btn-salvar-config:hover {
+  background-color: var(--cor-destaque);
+  color: #353e3d;
+  transform: translateY(-1px);
+}
+
+/* =========================================
+   ABA 2: PREFERÊNCIAS & ALERGIAS (SWITCH EM PÍLULA DE 3 ESTADOS)
+   ========================================= */
+.lista-alergias-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.linha-alergia-config {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.1rem 1.25rem;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+}
+
+.linha-alergia-config.estado-tenho {
+  border-color: rgba(215, 176, 78, 0.6);
+  background-color: rgba(215, 176, 78, 0.08);
+}
+
+.linha-alergia-config.estado-nao {
+  opacity: 0.88;
+}
+
+.conteudo-alergia-principal {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.95rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.icone-alergia-moldura {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  margin-top: 1px;
+  transition: all 0.2s ease;
+}
+
+.linha-alergia-config.estado-tenho .icone-alergia-moldura {
+  background-color: rgba(215, 176, 78, 0.2);
+  border-color: rgba(215, 176, 78, 0.7);
+  color: #9e7413;
+}
+
+:root.tema-escuro .icone-alergia-moldura {
+  background-color: #232928;
+  color: #aeb787;
+}
+
+:root.tema-escuro .linha-alergia-config.estado-tenho .icone-alergia-moldura {
+  color: var(--cor-destaque);
+}
+
+.info-alergia-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.info-alergia-config strong {
+  font-size: 1rem;
+  color: var(--cor-texto-escuro);
+}
+
+.info-alergia-config p {
+  font-size: 0.83rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.45;
+  min-height: 2.9em;
+  margin: 0;
+}
+
+.status-alergia-config {
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-top: 0.15rem;
+  color: var(--cor-texto-claro);
+}
+
+.linha-alergia-config.estado-tenho .status-alergia-config {
+  color: #9e7413;
+  font-weight: 700;
+}
+
+:root.tema-escuro .linha-alergia-config.estado-tenho .status-alergia-config {
+  color: var(--cor-destaque);
+}
+
+.linha-alergia-config.estado-nao .status-alergia-config {
+  color: var(--cor-primaria);
+}
+
+:root.tema-escuro .linha-alergia-config.estado-nao .status-alergia-config {
+  color: #aeb787;
+}
+
+/* Pílula Tripla (Switch de 3 posições: Não tenho | Padrão | Tenho alergia) */
+.pilula-tripla {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 50px;
+  padding: 3px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  flex-shrink: 0;
+}
+
+.opcao-pilula-tripla {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+  border: none;
+  padding: 0.42rem 0.85rem;
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+  white-space: nowrap;
+}
+
+.opcao-pilula-tripla:hover {
+  color: var(--cor-texto-escuro);
+}
+
+.opcao-pilula-tripla.ativa {
+  color: #353e3d;
+  font-weight: 700;
+}
+
+/* Indicador deslizante de estado da pílula */
+.pilula-tripla.estado-nao .opcao-pilula-tripla.ativa {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--cor-borda);
+}
+
+.pilula-tripla.estado-padrao .opcao-pilula-tripla.ativa {
+  background-color: var(--cor-secundaria);
+  color: #232928;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+:root.tema-escuro .pilula-tripla.estado-padrao .opcao-pilula-tripla.ativa {
+  background-color: #aeb787;
+  color: #232928;
+}
+
+.pilula-tripla.estado-tenho .opcao-pilula-tripla.ativa {
+  background-color: var(--cor-destaque);
+  color: #232928;
+  box-shadow: 0 2px 8px rgba(215, 176, 78, 0.35);
+}
+
+.divisor-secao-config {
+  border: none;
+  border-top: 1px solid var(--cor-borda);
+  margin: 0.35rem 0;
+}
+
+/* Seleção de Pagamento Padrão */
+.lista-pagamentos-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.card-pagamento-config {
+  display: flex;
+  align-items: center;
+  gap: 0.95rem;
+  padding: 1rem 1.2rem;
+  border-radius: 12px;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.card-pagamento-config:hover {
+  border-color: var(--cor-secundaria);
+}
+
+.card-pagamento-config.ativo {
+  border-color: var(--cor-destaque);
+  background-color: rgba(215, 176, 78, 0.12);
+}
+
+.card-pagamento-config input[type="radio"] {
+  accent-color: var(--cor-destaque);
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.icone-pagamento-moldura {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-primaria);
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.card-pagamento-config.ativo .icone-pagamento-moldura {
+  background-color: rgba(215, 176, 78, 0.22);
+  border-color: var(--cor-destaque);
+  color: #9e7413;
+}
+
+:root.tema-escuro .icone-pagamento-moldura {
+  background-color: #232928;
+  color: #aeb787;
+}
+
+:root.tema-escuro .card-pagamento-config.ativo .icone-pagamento-moldura {
+  color: var(--cor-destaque);
+}
+
+.info-pagamento-config {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.info-pagamento-config strong {
+  font-size: 0.95rem;
+  color: var(--cor-texto-escuro);
+}
+
+.info-pagamento-config span {
+  font-size: 0.82rem;
+  color: var(--cor-texto-claro);
+}
+
+/* =========================================
+   ABA 3: ACESSIBILIDADE E APARÊNCIA
+   ========================================= */
+.item-controle-acessibilidade {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.15rem 1.25rem;
+  border-radius: 12px;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  flex-wrap: wrap;
+}
+
+.item-controle-acessibilidade.bloco-com-escala {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0.85rem;
+}
+
+.linha-controle-com-switch {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.texto-controle-acessibilidade {
+  display: flex;
+  flex-direction: column;
+  gap: 0.22rem;
+  max-width: 460px;
+}
+
+.texto-controle-acessibilidade strong {
+  font-size: 0.96rem;
+  color: var(--cor-texto-escuro);
+}
+
+.texto-controle-acessibilidade span {
+  font-size: 0.83rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.42;
+}
+
+.grupo-botoes-segmentados {
+  display: flex;
+  gap: 0.45rem;
+  flex-wrap: wrap;
+}
+
+.grupo-botoes-segmentados.alinhar-base {
+  align-items: center;
+}
+
+.btn-segmentado {
+  background-color: var(--cor-card);
+  color: var(--cor-texto-escuro);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  padding: 0.5rem 0.9rem;
+  font-family: var(--fonte-principal);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: all 0.2s ease;
+}
+
+.btn-segmentado:hover {
+  border-color: var(--cor-destaque);
+}
+
+.btn-segmentado.ativo {
+  background-color: var(--cor-destaque);
+  color: #232928;
+  border-color: var(--cor-destaque);
+  font-weight: 700;
+}
+
+/* Botões de escala de fonte (dimensões e tamanhos em pixels fixos para não sofrerem ampliação composta) */
+.btn-escala-fonte {
+  padding: 8px 18px !important;
+  height: 38px !important;
+  line-height: 1 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-sizing: border-box !important;
+}
+
+.btn-escala-fonte[data-tamanho="normal"] {
+  font-size: 13px !important;
+}
+
+.btn-escala-fonte[data-tamanho="medio"] {
+  font-size: 15px !important;
+}
+
+.btn-escala-fonte[data-tamanho="grande"] {
+  font-size: 17px !important;
+}
+
+/* Switch Toggle de Acessibilidade */
+.switch-cantina {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.switch-cantina input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider-switch-cantina {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: rgba(53, 62, 61, 0.28);
+  border-radius: 34px;
+  transition: 0.25s;
+}
+
+:root.tema-escuro .slider-switch-cantina {
+  background-color: rgba(236, 229, 203, 0.22);
+}
+
+.slider-switch-cantina::before {
+  position: absolute;
+  content: '';
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #FFFFFF;
+  border-radius: 50%;
+  transition: 0.25s;
+}
+
+.switch-cantina input:checked + .slider-switch-cantina {
+  background-color: var(--cor-destaque);
+}
+
+.switch-cantina input:checked + .slider-switch-cantina::before {
+  transform: translateX(22px);
+  background-color: #232928;
+}
+
+/* =========================================
+   BLOCO DE DALTONISMO (SELETOR DE SETAS + MINI DIAGRAMA RGB + SLIDER)
+   ========================================= */
+.conteudo-daltonismo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.linha-controle-daltonismo {
+  display: flex;
+  align-items: flex-end;
+  gap: 1rem;
+  width: 100%;
+}
+
+/* Coluna do Seletor de Setas */
+.coluna-seletor-daltonismo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.label-seletor-daltonismo {
+  font-size: 0.84rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+.seletor-setas-daltonismo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.6rem;
+  padding: 0.55rem 0.65rem;
+  min-height: 72px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.2s ease;
+}
+
+.seletor-setas-daltonismo:hover {
+  border-color: var(--cor-destaque);
+}
+
+.btn-seta-daltonismo {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background-color: var(--cor-fundo);
+  border: 1px solid var(--cor-borda);
+  color: var(--cor-texto-escuro);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+}
+
+.btn-seta-daltonismo:hover {
+  background-color: var(--cor-destaque);
+  border-color: var(--cor-destaque);
+  color: #232928;
+  transform: scale(1.06);
+}
+
+.btn-seta-daltonismo:active {
+  transform: scale(0.95);
+}
+
+.info-modo-daltonismo-setas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.18rem;
+  flex: 1;
+  min-width: 0;
+  padding: 0 0.4rem;
+}
+
+.indicador-passo-daltonismo {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--cor-destaque);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.info-modo-daltonismo-setas strong {
+  font-size: 0.95rem;
+  color: var(--cor-texto-escuro);
+}
+
+.info-modo-daltonismo-setas span {
+  font-size: 0.79rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.35;
+  white-space: normal;
+}
+
+/* Mini Card Compacto com o Diagrama RGB (apenas a imagem pura ao lado do seletor) */
+.mini-card-diagrama-rgb {
+  width: 72px;
+  height: 72px;
+  flex-shrink: 0;
+  background-color: #151a19;
+  border: 1px solid var(--cor-borda);
+  border-radius: 12px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3px;
+  overflow: hidden;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.mini-card-diagrama-rgb:hover {
+  border-color: var(--cor-destaque);
+  transform: scale(1.03);
+}
+
+.svg-mini-diagrama-rgb {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Bloco da Escala de Ajuste Fino (Surgimento Dinâmico) */
+.bloco-escala-daltonismo {
+  margin-top: 0.4rem;
+  padding: 0.95rem 1.15rem;
+  border-radius: 12px;
+  background-color: var(--cor-card);
+  border: 1px solid var(--cor-borda);
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  animation: fade 0.22s ease-in-out;
+}
+
+.cabecalho-escala-daltonismo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.label-escala-daltonismo {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--cor-texto-escuro);
+}
+
+.badge-valor-grau {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #232928;
+  background-color: var(--cor-destaque);
+  padding: 0.18rem 0.6rem;
+  border-radius: 50px;
+  letter-spacing: 0.3px;
+}
+
+.container-slider-grau {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  width: 100%;
+}
+
+.rotulo-extremo-grau {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--cor-texto-claro);
+  white-space: nowrap;
+}
+
+.slider-grau-cantina {
+  flex: 1;
+  height: 8px;
+  border-radius: 6px;
+  background: rgba(53, 62, 61, 0.25);
+  accent-color: var(--cor-destaque);
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s;
+}
+
+:root.tema-escuro .slider-grau-cantina {
+  background: rgba(236, 229, 203, 0.25);
+}
+
+.slider-grau-cantina:focus-visible {
+  outline: 2px solid var(--cor-destaque);
+  outline-offset: 2px;
+}
+
+/* =========================================
+   ABA 4: SEGURANÇA E MEDIDOR DE SENHA
+   ========================================= */
+.input-senha-config-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.input-senha-config-wrapper input {
+  padding-right: 2.8rem;
+  width: 100%;
+}
+
+.btn-olho-config {
+  position: absolute;
+  right: 10px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--cor-texto-claro);
+  padding: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.btn-olho-config:hover {
+  color: var(--cor-texto-escuro);
+}
+
+/* Erro por campo (mesmo padrão da tela de Login) */
+.campo-config.campo-com-erro input {
+  border-color: #E63946 !important;
+  background-color: #FDF0F0 !important;
+  color: #E63946 !important;
+}
+
+:root.tema-escuro .campo-config.campo-com-erro input {
+  background-color: rgba(230, 57, 70, 0.12) !important;
+}
+
+.campo-config.campo-com-erro input:focus {
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.22) !important;
+}
+
+.mensagem-erro-campo {
+  color: #E63946;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: 0.35rem;
+  display: block;
+  animation: fade 0.22s ease;
+}
+
+/* Medidor Centralizado de Força da Senha (só visível com texto) */
+.container-forca-senha-config {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem;
+  margin-top: 0.55rem;
+  width: 100%;
+  cursor: pointer;
+  user-select: none;
+  animation: fade 0.2s ease;
+}
+
+.barras-forca-senha-config {
+  display: flex;
+  width: 100%;
+  max-width: 220px;
+  gap: 0.4rem;
+}
+
+.segmento-forca-config {
+  flex: 1;
+  height: 5px;
+  border-radius: 4px;
+  background-color: rgba(174, 183, 135, 0.25);
+  transition: background-color 0.25s ease;
+}
+
+.segmento-forca-config.ativo.fraca {
+  background-color: #E63946;
+}
+
+.segmento-forca-config.ativo.media {
+  background-color: #d7b04e;
+}
+
+.segmento-forca-config.ativo.forte {
+  background-color: #7ab85c;
+}
+
+.rotulo-forca-senha-config {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+}
+
+.rotulo-forca-senha-config.fraca {
+  color: #E63946;
+}
+
+.rotulo-forca-senha-config.media {
+  color: #d7b04e;
+}
+
+.rotulo-forca-senha-config.forte {
+  color: #7ab85c;
+}
+
+/* Balão flutuante idêntico ao da tela de cadastro (sobreposto sobre os elementos) */
+.balao-regras-senha-config {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 280px;
+  background-color: #232928;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45);
+  z-index: 80;
+  animation: fade 0.18s ease;
+}
+
+.balao-regras-senha-config::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: var(--cor-destaque) transparent transparent transparent;
+}
+
+.balao-regras-senha-config::after {
+  content: '';
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #232928 transparent transparent transparent;
+}
+
+.lista-regras-senha-config {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-regras-senha-config li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.79rem;
+  font-weight: 600;
+}
+
+.lista-regras-senha-config li.cumprida {
+  color: #7ab85c;
+}
+
+.lista-regras-senha-config li.pendente {
+  color: #ff6b76;
+}
+
+.icone-regra-senha-config {
+  font-weight: 800;
+  width: 14px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* =========================================
+   EFEITOS GLOBAIS DE ACESSIBILIDADE NO :root
+   ========================================= */
+:root.fonte-media {
+  font-size: 108%;
+}
+
+:root.fonte-grande {
+  font-size: 116%;
+}
+
+:root.reduzir-movimento *,
+:root.reduzir-movimento *::before,
+:root.reduzir-movimento *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Modo Alto Contraste & Destaque de Foco Reforçado (Progressão Contínua de 0 a 1) */
+html.alto-contraste body {
+  /* Em 0, contraste normal (1.0 = idêntico ao site desligado); em 1, contraste máximo (1.45) */
+  filter: contrast(calc(1 + (var(--grau-contraste, 0.5) * 0.45)));
+}
+
+:root.alto-contraste .card-produto,
+:root.alto-contraste .modal-produto-card,
+:root.alto-contraste .cantina-header,
+:root.alto-contraste .painel-conteudo-config,
+:root.alto-contraste .menu-lateral-config,
+:root.alto-contraste .item-controle-acessibilidade {
+  border-width: calc(1px + (var(--grau-contraste, 0.5) * 1.5px)) !important;
+  border-color: rgba(53, 62, 61, calc(0.1 + (var(--grau-contraste, 0.5) * 0.35))) !important;
+}
+
+:root.tema-escuro.alto-contraste .card-produto,
+:root.tema-escuro.alto-contraste .modal-produto-card,
+:root.tema-escuro.alto-contraste .cantina-header,
+:root.tema-escuro.alto-contraste .painel-conteudo-config,
+:root.tema-escuro.alto-contraste .menu-lateral-config,
+:root.tema-escuro.alto-contraste .item-controle-acessibilidade {
+  border-color: rgba(236, 229, 203, calc(0.12 + (var(--grau-contraste, 0.5) * 0.35))) !important;
+}
+
+:root.alto-contraste button:focus-visible,
+:root.alto-contraste a:focus-visible,
+:root.alto-contraste input:focus-visible,
+:root.alto-contraste select:focus-visible,
+:root.alto-contraste textarea:focus-visible,
+:root.alto-contraste [tabindex]:focus-visible {
+  outline: calc(var(--grau-contraste, 0.5) * 3px) solid var(--cor-destaque) !important;
+  outline-offset: calc(var(--grau-contraste, 0.5) * 3px) !important;
+  box-shadow: 0 0 0 calc(var(--grau-contraste, 0.5) * 5px) rgba(0, 0, 0, 0.45) !important;
+}
+
+/* =========================================
+   FILTROS DE DALTONISMO GLOBAIS
+   ========================================= */
+.filtros-daltonismo-svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  opacity: 0;
+}
+
+html.daltonismo-protanopia {
+  filter: url(#filtro-protanopia);
+}
+
+html.daltonismo-deuteranopia {
+  filter: url(#filtro-deuteranopia);
+}
+
+html.daltonismo-tritanopia {
+  filter: url(#filtro-tritanopia);
+}
+
+html.daltonismo-acromatopsia {
+  filter: grayscale(calc(var(--grau-daltonismo, 0.5) * 100%));
+}
+
+/* Garante reação nítida e direta no mini diagrama RGB */
+html.daltonismo-protanopia .mini-card-diagrama-rgb {
+  filter: url(#filtro-protanopia);
+}
+
+html.daltonismo-deuteranopia .mini-card-diagrama-rgb {
+  filter: url(#filtro-deuteranopia);
+}
+
+html.daltonismo-tritanopia .mini-card-diagrama-rgb {
+  filter: url(#filtro-tritanopia);
+}
+
+html.daltonismo-acromatopsia .mini-card-diagrama-rgb {
+  filter: grayscale(calc(var(--grau-daltonismo, 0.5) * 100%));
+}
+
+/* Alerta no ProductModal e pílula de ingrediente com alerta reforçado pelo perfil agora em estilos.css */
+
+@media (max-width: 860px) {
+  .layout-sistema-config {
+    grid-template-columns: 1fr;
+  }
+
+  .grade-campos-config {
+    grid-template-columns: 1fr;
+  }
+
+  .linha-alergia-config {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .pilula-tripla {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .opcao-pilula-tripla {
+    flex: 1;
+    text-align: center;
+  }
+
+  .linha-controle-daltonismo {
+    gap: 0.75rem;
+  }
+}

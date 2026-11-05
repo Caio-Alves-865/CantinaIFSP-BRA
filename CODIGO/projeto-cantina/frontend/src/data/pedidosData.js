@@ -1,0 +1,81 @@
+export const historicoPedidosData = [
+  {
+    id: '1042',
+    numero: 'Pedido #1042',
+    data: '08 de Junho, 2026',
+    status: 'Pronto para Retirada',
+    classeStatus: 'status-pronto',
+    itens: ['1x Marmita Tradicional', '1x Coca-Cola Lata'],
+    observacao: 'Coca-Cola bem gelada e enviar talher descartável, por favor.',
+    total: 'R$ 28,50',
+    produtosDetalhados: [
+      {
+        id: 6,
+        nome: 'Marmita Tradicional',
+        categoria: 'Pratos Feitos',
+        descricao: 'Arroz, feijão, carne de panela suculenta, salada do dia e farofa.',
+        precoUnitario: 'R$ 22,00',
+        quantidade: 1,
+        imagem: '/img/produtos/pratos/marmita.jpg',
+      },
+      {
+        id: 2,
+        nome: 'Coca-Cola Lata',
+        categoria: 'Bebidas',
+        descricao: 'Refrigerante gelado 350ml, ideal para acompanhar seu lanche.',
+        precoUnitario: 'R$ 6,50',
+        quantidade: 1,
+        imagem: '/img/produtos/bebidas/coca.jpg',
+      },
+    ],
+  },
+  {
+    id: '0988',
+    numero: 'Pedido #0988',
+    data: '05 de Junho, 2026',
+    status: 'Finalizado',
+    classeStatus: 'status-entregue',
+    itens: ['2x Coxinha de Frango', '1x Coca-Cola Lata'],
+    observacao: 'Coxinhas bem quentinhas e guardanapo extra.',
+    total: 'R$ 18,50',
+    produtosDetalhados: [
+      {
+        id: 1,
+        nome: 'Coxinha de Frango',
+        categoria: 'Salgados',
+        descricao: 'Massa artesanal de batata com recheio cremoso de frango temperado.',
+        precoUnitario: 'R$ 6,00',
+        quantidade: 2,
+        imagem: '/img/produtos/salgados/coxinha.jpg',
+      },
+      {
+        id: 2,
+        nome: 'Coca-Cola Lata',
+        categoria: 'Bebidas',
+        descricao: 'Refrigerante gelado 350ml, ideal para acompanhar seu lanche.',
+        precoUnitario: 'R$ 6,50',
+        quantidade: 1,
+        imagem: '/img/produtos/bebidas/coca.jpg',
+      },
+    ],
+  },
+];
+
+export const itensCarrinhoExemploData = [
+  {
+    id: 1,
+    nome: 'Coxinha de Frango',
+    preco: 'R$ 6,00',
+    precoNumerico: 6.0,
+    quantidade: 1,
+    imagem: '/img/produtos/salgados/coxinha.jpg',
+  },
+  {
+    id: 3,
+    nome: 'Brigadeiro Gourmet',
+    preco: 'R$ 4,50',
+    precoNumerico: 4.5,
+    quantidade: 2,
+    imagem: '/img/produtos/doces/brigadeiro.jpg',
+  },
+];

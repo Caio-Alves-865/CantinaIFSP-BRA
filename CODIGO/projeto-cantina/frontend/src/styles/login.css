@@ -1,0 +1,954 @@
+/* =========================================
+   ESTILOS DA PÁGINA DE LOGIN
+   ========================================= */
+
+.body-login {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--cor-secundaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 1.5rem 1rem;
+  transition: background-color 0.3s ease;
+}
+
+/* =========================================
+   FUNDO BOTÂNICO MINIMALISTA (FOLHINHAS DA LOGO)
+   ========================================= */
+.fundo-folhas-login {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.folha-decorativa {
+  position: absolute;
+  color: #353e3d;
+  opacity: 0.1;
+}
+
+:root.tema-escuro .folha-decorativa {
+  color: #ece5cb;
+  opacity: 0.08;
+}
+
+.folha-1 {
+  width: 240px;
+  height: 240px;
+  top: -30px;
+  left: -25px;
+  transform: rotate(15deg);
+}
+
+.folha-2 {
+  width: 280px;
+  height: 280px;
+  bottom: -45px;
+  right: -30px;
+  transform: rotate(-160deg);
+}
+
+.folha-3 {
+  width: 170px;
+  height: 170px;
+  bottom: 8%;
+  left: 6%;
+  transform: rotate(-28deg);
+}
+
+.folha-4 {
+  width: 160px;
+  height: 160px;
+  top: 10%;
+  right: 8%;
+  transform: rotate(135deg);
+}
+
+.folha-5 {
+  width: 150px;
+  height: 150px;
+  top: 42%;
+  left: 3%;
+  transform: rotate(40deg);
+}
+
+.folha-6 {
+  width: 145px;
+  height: 145px;
+  top: 46%;
+  right: 4%;
+  transform: rotate(-125deg);
+}
+
+.folha-7 {
+  width: 130px;
+  height: 130px;
+  top: 14%;
+  left: 22%;
+  transform: rotate(-15deg);
+}
+
+.folha-8 {
+  width: 125px;
+  height: 125px;
+  bottom: 12%;
+  right: 22%;
+  transform: rotate(165deg);
+}
+
+.folha-9 {
+  width: 115px;
+  height: 115px;
+  top: 72%;
+  left: 20%;
+  transform: rotate(65deg);
+}
+
+.folha-10 {
+  width: 120px;
+  height: 120px;
+  top: 26%;
+  right: 21%;
+  transform: rotate(-70deg);
+}
+
+.container-login {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 410px;
+}
+
+.logo-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  margin-bottom: 1.5rem;
+  color: var(--cor-texto-escuro);
+}
+
+.img-logo-pagina-login {
+  width: 130px;
+  height: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.12));
+}
+
+.box-autenticacao {
+  background-color: var(--cor-card);
+  border-radius: var(--borda-raio);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+  overflow: visible;
+  padding: 2rem;
+}
+
+/* Abas */
+.abas-login {
+  display: flex;
+  border-bottom: 2px solid var(--cor-fundo);
+  margin-bottom: 1.5rem;
+}
+
+.aba-btn {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  font-family: var(--fonte-principal);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--cor-texto-claro);
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s ease;
+}
+
+.aba-btn.ativo {
+  color: var(--cor-primaria);
+  border-bottom-color: var(--cor-primaria);
+}
+
+/* Telas ocultas e ativas */
+.tela-auth {
+  display: none;
+  animation: fade 0.3s ease;
+}
+
+.tela-auth.ativa {
+  display: block;
+}
+
+/* Formulários */
+.grupo-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.2rem;
+}
+
+.grupo-input label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+}
+
+.grupo-input input {
+  width: 100%;
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  padding: 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-escuro);
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.grupo-input input:focus {
+  border-color: var(--cor-destaque);
+}
+
+/* =========================================
+   AUTOCOMPLETE FANTASMA (@aluno.ifsp.edu.br)
+   ========================================= */
+.wrapper-email-autocomplete {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.wrapper-email-autocomplete input {
+  position: relative;
+  z-index: 1;
+}
+
+.camada-fantasma-email {
+  position: absolute;
+  inset: 0;
+  padding: 0.8rem;
+  border: 1px solid transparent;
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.texto-fantasma-invisivel {
+  color: transparent;
+}
+
+.texto-fantasma-sugestao {
+  color: var(--cor-texto-claro);
+  opacity: 0.55;
+}
+
+/* =========================================
+   MEDIDOR MINIMALISTA DE FORÇA DA SENHA E BALÃO DE REGRAS
+   ========================================= */
+.grupo-senha-cadastro {
+  margin-bottom: 0.65rem;
+}
+
+.container-forca-senha {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  height: 28px; /* Altura fixa reservada para nunca alterar o tamanho do modal */
+  margin-top: 0.2rem;
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease;
+}
+
+.container-forca-senha.oculto {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.container-forca-senha.visivel {
+  opacity: 1;
+  visibility: visible;
+}
+
+.barras-forca-senha {
+  display: flex;
+  width: 100%;
+  max-width: 220px;
+  gap: 0.4rem;
+}
+
+.segmento-forca {
+  flex: 1;
+  height: 5px;
+  border-radius: 4px;
+  background-color: rgba(174, 183, 135, 0.22);
+  transition: background-color 0.25s ease;
+}
+
+.segmento-forca.ativo.fraca {
+  background-color: #E63946;
+}
+
+.segmento-forca.ativo.media {
+  background-color: #d7b04e;
+}
+
+.segmento-forca.ativo.forte {
+  background-color: #7ab85c;
+}
+
+.rotulo-forca-senha {
+  font-size: 0.76rem;
+  font-weight: 700;
+  text-align: center;
+  line-height: 1;
+}
+
+.rotulo-forca-senha.fraca {
+  color: #E63946;
+}
+
+.rotulo-forca-senha.media {
+  color: #d7b04e;
+}
+
+.rotulo-forca-senha.forte {
+  color: #7ab85c;
+}
+
+/* Balão flutuante com lista de regras cumpridas (verde) e pendentes (vermelho) */
+.balao-regras-senha {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  background-color: #232928;
+  border: 1px solid var(--cor-destaque);
+  border-radius: 10px;
+  padding: 0.85rem 1rem;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4);
+  z-index: 80;
+  animation: fade 0.18s ease;
+}
+
+.balao-regras-senha::before {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: var(--cor-destaque) transparent transparent transparent;
+}
+
+.balao-regras-senha::after {
+  content: '';
+  position: absolute;
+  top: calc(100% - 1px);
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: #232928 transparent transparent transparent;
+}
+
+.titulo-balao-senha {
+  display: block;
+  font-size: 0.78rem;
+  color: #ece5cb;
+  margin-bottom: 0.45rem;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.lista-regras-senha {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.32rem;
+  margin: 0;
+  padding: 0;
+}
+
+.lista-regras-senha li {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.lista-regras-senha li.cumprida {
+  color: #7ab85c;
+}
+
+.lista-regras-senha li.pendente {
+  color: #ff6b76;
+}
+
+.icone-regra-senha {
+  font-weight: 800;
+  width: 14px;
+  text-align: center;
+}
+
+.opcoes-extras {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.opcoes-extras a {
+  font-size: 0.85rem;
+  color: var(--cor-texto-claro);
+  text-decoration: none;
+}
+
+.opcoes-extras a:hover {
+  color: var(--cor-primaria);
+}
+
+/* Botões */
+.btn-principal {
+  width: 100%;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-principal:hover {
+  background-color: #525c2f;
+}
+
+.btn-voltar {
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-claro);
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-voltar:hover {
+  color: var(--cor-texto-escuro);
+}
+
+/* Estilos de Recuperação */
+.texto-instrucao {
+  font-size: 0.9rem;
+  color: var(--cor-texto-claro);
+  margin-bottom: 1.5rem;
+}
+
+.mensagem-sucesso-email {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-texto-escuro);
+  padding: 0.8rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* No modo escuro, o título do login fica claro */
+:root.tema-escuro .logo-login h1 {
+  color: var(--cor-texto-escuro);
+}
+
+/* Ajusta as bordas e fundos dos inputs no modo escuro do login */
+:root.tema-escuro .grupo-input input {
+  background-color: #232928;
+  color: #ece5cb;
+  border-color: rgba(236, 229, 203, 0.15);
+}
+
+:root.tema-escuro .grupo-input input:focus {
+  border-color: var(--cor-primaria);
+}
+
+/* Impede que o preenchimento automático do navegador (Chrome/Edge) pinte o fundo de branco/azul */
+.grupo-input input:-webkit-autofill,
+.grupo-input input:-webkit-autofill:hover,
+.grupo-input input:-webkit-autofill:focus,
+.grupo-input input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #FAF8F5 inset !important;
+  -webkit-text-fill-color: var(--cor-texto-escuro) !important;
+  caret-color: var(--cor-texto-escuro) !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+:root.tema-escuro .grupo-input input:-webkit-autofill,
+:root.tema-escuro .grupo-input input:-webkit-autofill:hover,
+:root.tema-escuro .grupo-input input:-webkit-autofill:focus,
+:root.tema-escuro .grupo-input input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px #232928 inset !important;
+  -webkit-text-fill-color: #ece5cb !important;
+  caret-color: #ece5cb !important;
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+/* Remove o olho nativo instável e sem contraste do Edge/Windows */
+input::-ms-reveal,
+input::-ms-clear {
+  display: none !important;
+}
+
+/* Wrapper do campo de senha com botão de olho customizado */
+.wrapper-input-senha {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.wrapper-input-senha input {
+  width: 100%;
+  padding-right: 2.9rem !important;
+}
+
+.btn-olho-senha {
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: #353e3d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 0.18s ease, background-color 0.18s ease;
+  z-index: 3;
+}
+
+.btn-olho-senha:hover {
+  color: var(--cor-primaria);
+  background-color: rgba(53, 62, 61, 0.08);
+}
+
+:root.tema-escuro .btn-olho-senha {
+  color: #ece5cb;
+}
+
+:root.tema-escuro .btn-olho-senha:hover {
+  color: #d7b04e;
+  background-color: rgba(215, 176, 78, 0.14);
+}
+
+/* =========================================
+   VALIDAÇÃO E MENSAGENS DE ERRO
+   ========================================= */
+
+.mensagem-erro {
+  color: #E63946;
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.1rem;
+  display: none;
+}
+
+.grupo-input.erro input {
+  border-color: #E63946;
+  background-color: #FDF0F0;
+  color: #E63946;
+}
+
+.grupo-input.erro input:focus {
+  box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.2);
+}
+
+.grupo-input.erro .mensagem-erro {
+  display: block;
+  animation: fade 0.3s ease;
+}
+
+:root.tema-escuro .grupo-input.erro input {
+  background-color: rgba(230, 57, 70, 0.1);
+}
+
+/* =========================================
+   NOTIFICAÇÕES FLUTUANTES (TOASTS NO TEMA)
+   ========================================= */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.toast {
+  background-color: #353e3d;
+  color: #ece5cb;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 10px 25px rgba(53, 62, 61, 0.25);
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  font-family: var(--fonte-principal);
+  font-size: 0.95rem;
+  font-weight: 500;
+  border: 1px solid rgba(174, 183, 135, 0.25);
+  border-left: 6px solid #aeb787;
+  transform: translateX(120%);
+  animation: slideInToast 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) forwards,
+             fadeOutToast 0.4s ease forwards 3s;
+}
+
+.indicador-toast {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background-color: #aeb787;
+}
+
+.toast.sucesso {
+  border-left-color: #aeb787;
+}
+
+.toast.sucesso .indicador-toast {
+  background-color: #aeb787;
+  box-shadow: 0 0 8px rgba(174, 183, 135, 0.6);
+}
+
+.toast.erro {
+  border-left-color: #d7b04e;
+}
+
+.toast.erro .indicador-toast {
+  background-color: #d7b04e;
+  box-shadow: 0 0 8px rgba(215, 176, 78, 0.6);
+}
+
+@keyframes slideInToast {
+  to { transform: translateX(0); }
+}
+
+@keyframes fadeOutToast {
+  to { opacity: 0; transform: translateX(20px); }
+}
+
+:root.tema-escuro .toast {
+  background-color: #353e3d;
+  color: #ece5cb;
+}
+
+/* =========================================
+   CONTROLES SUPERIORES FLUTUANTES (LOGIN)
+   ========================================= */
+.controle-tema-login {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btn-voltar-home {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--cor-texto-escuro);
+  text-decoration: none;
+  font-weight: 600;
+  font-family: var(--fonte-principal);
+  font-size: 0.9rem;
+  background-color: var(--cor-card);
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.2s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.btn-voltar-home:hover {
+  background-color: var(--cor-fundo);
+  transform: translateY(-2px);
+}
+
+:root.tema-escuro .btn-voltar-home {
+  background-color: #353e3d;
+  color: #ece5cb;
+  border-color: rgba(236, 229, 203, 0.1);
+}
+
+:root.tema-escuro .btn-voltar-home:hover {
+  background-color: #232928;
+}
+
+/* =========================================
+   MODAL DE VERIFICAÇÃO DE E-MAIL E 5 BLOQUINHOS DE TOKEN
+   ========================================= */
+.overlay-modal-token {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background-color: rgba(35, 41, 40, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  animation: fade 0.2s ease;
+}
+
+.card-modal-token {
+  background-color: var(--cor-card);
+  width: 100%;
+  max-width: 390px;
+  border-radius: 20px;
+  padding: 2rem 1.75rem 1.65rem;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(174, 183, 135, 0.35);
+  text-align: center;
+  animation: subirModalToken 0.25s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+:root.tema-escuro .card-modal-token {
+  background-color: #2c3534;
+  border-color: rgba(215, 176, 78, 0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.55);
+}
+
+@keyframes subirModalToken {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.icone-modal-token {
+  width: 56px;
+  height: 56px;
+  margin: 0 auto 1rem;
+  border-radius: 16px;
+  background-color: rgba(104, 116, 61, 0.14);
+  color: var(--cor-primaria);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(104, 116, 61, 0.28);
+}
+
+:root.tema-escuro .icone-modal-token {
+  background-color: rgba(215, 176, 78, 0.12);
+  color: #d7b04e;
+  border-color: rgba(215, 176, 78, 0.32);
+}
+
+.card-modal-token h3 {
+  font-size: 1.3rem;
+  color: var(--cor-texto-escuro);
+  margin: 0 0 0.45rem;
+}
+
+.descricao-modal-token {
+  font-size: 0.88rem;
+  color: var(--cor-texto-claro);
+  line-height: 1.45;
+  margin: 0 0 1.35rem;
+}
+
+.email-destaque-token {
+  display: block;
+  margin-top: 0.2rem;
+  font-weight: 700;
+  color: var(--cor-primaria);
+  word-break: break-all;
+}
+
+:root.tema-escuro .email-destaque-token {
+  color: #d7b04e;
+}
+
+/* 5 Bloquinhos Distintos de Código (A-Z / 0-9) */
+.container-cinco-blocos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin: 0.25rem 0 1.15rem;
+}
+
+.bloco-codigo-token {
+  width: 50px !important;
+  height: 56px;
+  padding: 0 !important;
+  text-align: center;
+  font-family: var(--fonte-principal);
+  font-size: 1.35rem !important;
+  font-weight: 800;
+  text-transform: uppercase;
+  border-radius: 12px !important;
+  border: 2px solid #d5d0be !important;
+  background-color: var(--cor-fundo) !important;
+  color: var(--cor-texto-escuro) !important;
+  transition: all 0.18s ease;
+  caret-color: var(--cor-primaria);
+}
+
+.bloco-codigo-token:focus {
+  outline: none;
+  border-color: var(--cor-primaria) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(104, 116, 61, 0.18) !important;
+}
+
+.bloco-codigo-token.preenchido {
+  border-color: var(--cor-primaria) !important;
+  background-color: rgba(174, 183, 135, 0.16) !important;
+}
+
+:root.tema-escuro .bloco-codigo-token {
+  background-color: #232928 !important;
+  border-color: rgba(236, 229, 203, 0.2) !important;
+  color: #ece5cb !important;
+}
+
+:root.tema-escuro .bloco-codigo-token:focus {
+  border-color: #d7b04e !important;
+  box-shadow: 0 6px 14px rgba(215, 176, 78, 0.2) !important;
+}
+
+:root.tema-escuro .bloco-codigo-token.preenchido {
+  border-color: #d7b04e !important;
+  background-color: rgba(215, 176, 78, 0.12) !important;
+  color: #d7b04e !important;
+}
+
+.container-cinco-blocos.erro .bloco-codigo-token {
+  border-color: #E63946 !important;
+  background-color: rgba(230, 57, 70, 0.08) !important;
+}
+
+.erro-modal-token {
+  display: block;
+  color: #ff6b76;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-top: -0.45rem;
+  margin-bottom: 0.85rem;
+}
+
+.btn-confirmar-token {
+  margin-top: 0.2rem;
+}
+
+.acoes-rodape-token {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 1.1rem;
+}
+
+.btn-link-token {
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-claro);
+  font-family: var(--fonte-principal);
+  font-size: 0.84rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  transition: color 0.2s ease;
+}
+
+.btn-link-token:hover:not(:disabled) {
+  color: var(--cor-primaria);
+}
+
+:root.tema-escuro .btn-link-token:hover:not(:disabled) {
+  color: #d7b04e;
+}
+
+.btn-link-token:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+  font-variant-numeric: tabular-nums;
+}
+
+.divisor-acoes-token {
+  color: var(--cor-texto-claro);
+  opacity: 0.5;
+}
+
+/* Ajustes compactos para Recuperar Senha (mantendo o tamanho do modal fixo) */
+#tela-recuperacao h4 {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-bottom: 0.35rem;
+}
+
+#tela-recuperacao .texto-instrucao {
+  text-align: center;
+}
+
+.form-nova-senha-compacto .subtitulo-codigo-rec {
+  text-align: center;
+  font-size: 0.86rem;
+  color: var(--cor-texto-claro);
+  margin: 0 0 0.85rem;
+  line-height: 1.45;
+}
+
+.form-nova-senha-compacto .grupo-codigo-rec {
+  margin-bottom: 0.75rem;
+  text-align: center;
+}
+
+.form-nova-senha-compacto .grupo-codigo-rec .mensagem-erro {
+  text-align: center;
+}
+
+.form-nova-senha-compacto .container-cinco-blocos {
+  margin: 0.1rem 0 0.25rem;
+}
+
+.form-nova-senha-compacto .bloco-codigo-token {
+  width: 48px !important;
+  height: 52px;
+  font-size: 1.25rem !important;
+}
+
+.acoes-rodape-recuperacao {
+  margin-top: 0.85rem;
+}

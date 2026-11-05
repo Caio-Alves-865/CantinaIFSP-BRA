@@ -1,0 +1,243 @@
+/* =========================================
+   ESTILOS DA PÁGINA DE AJUDA / FAQ
+   ========================================= */
+
+.ajuda-main {
+  max-width: 800px; /* Deixamos a página mais estreita para facilitar a leitura */
+  margin: 0 auto;
+}
+
+.cabecalho-pagina {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.titulo-cabecalho-ajuda {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  margin-bottom: 0.6rem;
+}
+
+.icone-titulo-ajuda {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background-color: rgba(53, 62, 61, 0.1);
+  color: #353e3d;
+  border: 1px solid rgba(53, 62, 61, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:root.tema-escuro .icone-titulo-ajuda {
+  background-color: rgba(215, 176, 78, 0.16);
+  color: var(--cor-destaque);
+  border-color: transparent;
+}
+
+.cabecalho-pagina h2 {
+  font-size: 2rem;
+  color: var(--cor-texto-escuro);
+  margin: 0;
+}
+
+.cabecalho-pagina p {
+  color: var(--cor-texto-claro);
+  font-size: 1.05rem;
+}
+
+/* Container que segura todos os itens */
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem; /* Espaço entre cada pergunta */
+}
+
+/* Estilo do bloco individual (Pergunta + Resposta) */
+.faq-item {
+  background-color: var(--cor-card);
+  border-radius: var(--borda-raio);
+  box-shadow: var(--sombra-suave);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  overflow: hidden; /* Importante para a borda arredondada segurar a resposta */
+  transition: box-shadow 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* O Botão Clicável (A Pergunta em si) */
+.faq-pergunta {
+  width: 100%;
+  background: transparent;
+  border: none;
+  padding: 1.5rem;
+  font-family: var(--fonte-principal);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--cor-texto-escuro);
+  text-align: left;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: background-color 0.2s ease;
+}
+
+.faq-pergunta:hover {
+  background-color: var(--cor-fundo);
+}
+
+.icone-seta {
+  font-size: 0.9rem;
+  transition: transform 0.3s ease;
+  color: var(--cor-primaria);
+}
+
+/* =========================================
+   A MÁGICA DA ANIMAÇÃO DA RESPOSTA
+   ========================================= */
+
+/* O Wrapper é o que sofre a animação usando CSS Grid */
+.faq-resposta-wrapper {
+  display: grid;
+  grid-template-rows: 0fr; /* Começa com altura ZERO */
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  background-color: var(--cor-fundo);
+  border-top: 1px solid transparent;
+}
+
+.faq-resposta {
+  overflow: hidden; /* Oculta o texto quando a altura é zero */
+}
+
+.faq-resposta p {
+  padding: 1.25rem 1.5rem 1.5rem 1.5rem;
+  color: var(--cor-texto-escuro);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+/* Quando o JS injeta a classe .ativo no .faq-item */
+.faq-item.ativo .faq-resposta-wrapper {
+  grid-template-rows: 1fr; /* Abre para o tamanho exato do texto */
+  border-top-color: var(--cor-borda);
+}
+
+.faq-item.ativo .icone-seta {
+  transform: rotate(-180deg); /* Gira a setinha para cima */
+  color: var(--cor-destaque);
+}
+
+/* =========================================
+   AVALIAÇÃO DIÁRIA DE UTILIDADE DO FAQ (SIM / NÃO)
+   ========================================= */
+.bloco-avaliacao-faq {
+  margin-top: 2.25rem;
+  padding: 0.25rem 0;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fade 0.3s ease;
+}
+
+.conteudo-avaliacao-faq {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.pergunta-avaliacao-faq {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--cor-texto-claro);
+}
+
+.botoes-avaliacao-faq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.btn-voto-faq {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.48rem 1.2rem;
+  border-radius: 50px;
+  font-family: var(--fonte-principal);
+  font-size: 0.88rem;
+  font-weight: 700;
+  background-color: var(--cor-card);
+  color: var(--cor-texto-escuro);
+  border: 1.5px solid var(--cor-borda);
+  box-shadow: var(--sombra-suave);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-voto-faq.sim:hover {
+  background-color: var(--cor-primaria);
+  border-color: var(--cor-primaria);
+  color: #FFFFFF;
+  transform: translateY(-1px);
+}
+
+:root.tema-escuro .btn-voto-faq.sim:hover {
+  background-color: #aeb787;
+  border-color: #aeb787;
+  color: #232928;
+}
+
+.btn-voto-faq.nao:hover {
+  background-color: rgba(230, 57, 70, 0.14);
+  border-color: #E63946;
+  color: #E63946;
+  transform: translateY(-1px);
+}
+
+.agradecimento-avaliacao-faq {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  font-size: 0.92rem;
+  color: var(--cor-texto-escuro);
+  text-align: center;
+}
+
+.icone-check-faq {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: rgba(122, 184, 92, 0.2);
+  color: #5b963d;
+  font-weight: 800;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+:root.tema-escuro .icone-check-faq {
+  color: #7ab85c;
+}
+
+.resumo-voto-faq {
+  color: var(--cor-texto-claro);
+  font-size: 0.85rem;
+}
